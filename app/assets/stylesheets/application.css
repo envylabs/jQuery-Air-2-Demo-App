@@ -1,0 +1,25 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree . 
+*/
+
+
+#seats { width:640px; float:left; }
+
+/* each seat */
+#seats ul {  }
+#seats li { list-style:none; margin-bottom:4px; }
+#seats ul li ul li { width:30px; height:40px; border:2px solid #ccc; margin-right:4px; float:left; background-color:orange; }
+
+#seats ul li ul li.aisle { background-color: yellow; width: 50px; }
+#seats ul li ul li.premium { width:49px; background-color:cyan;}
+#seats ul li ul li.reserved { border:2px solid red; }
+#seats ul li span { display:none; }
+
+#seats > ul > li { clear:both; }
+
+#sidebar { width:320px; float:left; }
+#sidebar aside { border: 1px solid #ccc; }
