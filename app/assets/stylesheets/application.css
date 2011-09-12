@@ -23,3 +23,16 @@
 
 #sidebar { width:320px; float:left; }
 #sidebar aside { border: 1px solid #ccc; }
+
+
+/* slides */
+#tabs ul, #tabs ul li { margin:0; padding:0; }
+#tabs ul li { list-style:none; float:left; width: 60px; border:1px solid #ccc; margin-right:4px; text-align:center; position:relative; }
+#tabs ul li a { text-decoration: none; display:block; background-color: #EEE; }
+#tabs ul li a span { position:absolute; top:-20px; width: 60px; left: 0px;} 
+#tabs ul li a:hover { background-color: #ddd; }
+#tabs ul li a.active { background-color: cyan; }
+
+#tabs div { clear:both; }
+
+table a.selected { background-color: #FF0; }

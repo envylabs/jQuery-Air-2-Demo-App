@@ -15,6 +15,7 @@
 <%= yield %>
 
 <%= javascript_include_tag "application" %>
+<% yield :inline_javascript %>
 <%= current_javascript_file %>
 
 </body>

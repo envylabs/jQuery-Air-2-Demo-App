@@ -1,6 +1,10 @@
 Jquery2::Application.routes.draw do
   root :to => 'home#index'  
   
+  match '/challenges', :to => 'challenges#index'
+  match '/slides', :to => 'slides#index'
+
+  resources :flights
   resources :reservations do
     collection do
       post :fail

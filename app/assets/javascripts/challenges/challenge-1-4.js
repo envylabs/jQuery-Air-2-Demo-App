@@ -1,7 +1,7 @@
 var lesson = "1-4";
 
 jQuery(function($) {
-  question("Add ability to clear a reservation by clicking on it.");
+  question("Add ability to clear a reservation by clicking on it using unbind.");
 });
 
 function isSeatReserved(seat) {
