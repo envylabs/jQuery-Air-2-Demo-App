@@ -15,27 +15,27 @@ function changeTab(e) {
 
 function showNumberOfFlights(e) {
   console.log(lesson + " showNumberOfFlights");
-  $(e.target).append("<span class='tooltip'>"+ $(e.target).data('flights') +" flights</span>");
+  var num_flights = $(e.target).data('flights');
+  $(e.target).append("<span class='tooltip'>"+ num_flights 
+                      +" flights</span>");
 }
 
 function hideNumberOfFlights(a) {
   console.log(lesson + " showNumberOfFlights");
-  $(".tooltip").remove();
+  $("#tabs span.tooltip").remove();
 }
 
-jQuery(function($) {
-  $("#tabs ul li a").click(changeTab);
-  $("#tabs ul li a").mouseenter(showNumberOfFlights);
-  $("#tabs ul li a").mouseout(hideNumberOfFlights);
-
-  $("#tabs ul li a.active").click();
-});
-
 // jQuery(function($) {
-//   $("#tabs ul li a").bind({
-//     click: changeTab,
-//     mouseenter: showNumberOfFlights,
-//     mouseout: hideNumberOfFlights
-//   });
-//   $("#tabs ul li a.active").click();
+//   $("#tabs ul li a").click(changeTab);
+//   $("#tabs ul li a").mouseenter(showNumberOfFlights);
+//   $("#tabs ul li a").mouseout(hideNumberOfFlights);
 // });
+
+jQuery(function($) {
+  $("#tabs ul li a").bind({
+    click: changeTab,
+    mouseenter: showNumberOfFlights,
+    mouseout: hideNumberOfFlights
+  });
+  $("#tabs ul li:eq(2) a").click();
+});

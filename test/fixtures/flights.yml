@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  depart: 2011-09-13 16:20:21
+  arrive: 2011-09-13 16:20:21
+  flight: 1
+  stops: 1
+  first_class_price: 9.99
+  economy: 9.99
+
+two:
+  depart: 2011-09-13 16:20:21
+  arrive: 2011-09-13 16:20:21
+  flight: 1
+  stops: 1
+  first_class_price: 9.99
+  economy: 9.99

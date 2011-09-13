@@ -33,4 +33,5 @@ function hideNumberOfFlights(a) {
 
 jQuery(function($) {
   $("#tabs ul li a").click(changeTab);
+  $("#tabs ul li:eq(2) a").click();
 });

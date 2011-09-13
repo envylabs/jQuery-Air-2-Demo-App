@@ -1,35 +1,39 @@
-var lesson = "1-2";
+var lesson = "1-3";
 
 // Might need to start off teaching data & attr into this lesson.
 
 jQuery(function($) {
-  question("When a tab is clicked, show the related flights and highlight the tab using bind({}).");
+  question("Add divs");
 });
 
-function changeTab(a) {
+function changeTab(e) {
   console.log(lesson + " changeTab");
-  $("#tabs div").hide();
+  e.preventDefault();
   $("#tabs li a.active").removeClass("active");
-  $(a).addClass("active");
-  var active_div = $(a).attr("href");
+  $(e.target).addClass("active");
+  
+  var active_div = $(e.target).attr("href");
+  $("#tabs div").hide();
   $(active_div).show();
 }
 
-function showNumberOfFlights(a) {
+function showNumberOfFlights(e) {
   console.log(lesson + " showNumberOfFlights");
-  $(a).append("<span class='tooltip'>"+ $(a).data('flights') +" flights</span>");
+  var num_flights = $(e.target).data('flights');
+  $(e.target).append("<span class='tooltip'>"+ num_flights 
+                      +" flights</span>");
 }
 
 function hideNumberOfFlights(a) {
   console.log(lesson + " showNumberOfFlights");
-  $(".tooltip").remove();
+  $("#tabs span.tooltip").remove();
 }
 
 jQuery(function($) {
   $("#tabs ul li a").bind({
-    click: function (e) { changeTab(this) },
-    mouseenter: function (e) { showNumberOfFlights(this); },
-    mouseout: function (e) { hideNumberOfFlights(this); }
+    click: changeTab,
+    mouseenter: showNumberOfFlights,
+    mouseout: hideNumberOfFlights
   });
-  $("#tabs ul li a.active").click();
+  $("#tabs ul li:eq(2) a").click();
 });

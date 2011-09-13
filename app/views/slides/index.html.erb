@@ -4,28 +4,16 @@
 
 <section id="tabs">
   <ul>
-    <li><a href="#sep-27" data-flights="8">Sep 27</b></a></li>
-    <li><a href="#sep-28" data-flights="6">Sep 28</a></li>
-    <li><a href="#sep-29" data-flights="3" class="active">Sep 29</a></li>
-    <li><a href="#sep-30" data-flights="4">Sep 30</a></li>
-    <li><a href="#oct-1" data-flights="1">Oct 1</a></li>
+    <% @dates.each do |d| %>
+      <li><a href="#<%= d.strftime("%Y-%m-%d") %>" data-flights="<%= Flight.where(depart: d.beginning_of_day..d.end_of_day).count %>"><%= d.strftime("%b %d") %></a></li>
+    <% end %>
   </ul>
 
-  <div id="sep-27">
-    show flights for 27
-  </div>
-  <div id="sep-28">
-    show flights for 28
-  </div>
-  <div id="sep-29">
-    show flights for 29
-  </div>
-  <div id="sep-30">
-    show flights for 30
-  </div>
-  <div id="oct-1">
-      show flights for 1
-  </div>
+  <div id="2012-09-27">Showing Sep 27</div>
+  <div id="2012-09-28">Showing Sep 28</div>
+  <div id="2012-09-29">Showing Sep 29</div>
+  <div id="2012-09-30">Showing Sep 30</div>
+  <div id="2012-10-01">Showing Oct 1</div>
 </section>
 
 

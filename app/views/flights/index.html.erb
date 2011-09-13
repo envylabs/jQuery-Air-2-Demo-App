@@ -9,49 +9,14 @@
       <th>Coach</th>
     </tr>
   </thead>
-  
+  <% @flights.each do |f| %>
   <tr>
-    <td>8:55 AM</td>
-    <td>12:40 PM</td>
-    <td>622</td>
-    <td>1 stop</td>
-    <td><a href="#">$411</a></td>
-    <td><a href="#">$235</a></td>
+    <td><%= f.depart_time %></td>
+    <td><%= f.arrive_time %></td>
+    <td><%= f.flight %></td>
+    <td><%= stop_friendly(f.stops) %></td>
+    <td><a href="#"><%= number_to_currency f.first_class_price, precision: 0 %></a></td>
+    <td><a href="#"><%= number_to_currency f.economy_price, precision: 0 %></a></td>
   </tr>
-  
-  <tr>
-    <td>9:50 AM</td>
-    <td>12:45 PM</td>
-    <td>55</td>
-    <td>1 stop</td>
-    <td><a href="#">$411</a></td>
-    <td><a href="#">$235</a></td>
-  </tr>
-  
-  <tr>
-    <td>10:30 AM</td>
-    <td>12:10 PM</td>
-    <td>1343</td>
-    <td>Nonstop</td>
-    <td><a href="#">$411</a></td>
-    <td><a href="#">$235</a></td>
-  </tr>
-  
-  <tr>
-    <td>10:45 AM</td>
-    <td>2:15 PM</td>
-    <td>2345</td>
-    <td>1 stop</td>
-    <td><a href="#">$411</a></td>
-    <td><a href="#">$235</a></td>
-  </tr>
-  
-  <tr>
-    <td>8:55 AM</td>
-    <td>12:40 PM</td>
-    <td>45</td>
-    <td>1 stop</td>
-    <td><a href="#">$411</a></td>
-    <td><a href="#">$235</a></td>
-  </tr>
+  <% end %>
 </table>
