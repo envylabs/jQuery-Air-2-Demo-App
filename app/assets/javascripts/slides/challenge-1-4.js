@@ -15,9 +15,14 @@ function changeTab(e) {
   var active_div = $(a).attr("href");
   $(active_div).show();
   
+  // Also mention that you can unbind evertyhing with unbind('click')
+  // If you unbind('click.thing')
+  // So when you bind it.. you can do a namespace 
+  // bind({  
+  //    "click.flightSchedule": changeTab
+  //  })
   $(a).unbind('click', changeTab);
-  // Also can send in a handler function.
-  // ex: $(a).unbind('click', changeTab);
+
 }
 
 function showNumberOfFlights(a) {

@@ -13,9 +13,9 @@ function changeTab(e) {
   $(e.target).addClass("active");
 }
 
-function showNumberOfFlights(a) {
+function showNumberOfFlights(e) {
   console.log(lesson + " showNumberOfFlights");
-  $(a).append("<span class='tooltip'>"+ $(a).data('flights') +" flights</span>");
+  $(e.target).append("<span class='tooltip'>"+ $(e.target).data('flights') +" flights</span>");
 }
 
 function hideNumberOfFlights(a) {
@@ -23,14 +23,19 @@ function hideNumberOfFlights(a) {
   $(".tooltip").remove();
 }
 
-// jQuery(function($) {
-//   $("#tabs ul li a").click(function(e){
-//     e.preventDefault();
-//     $("#tabs li a.active").removeClass("active");
-//     $(this).addClass("active");
-//   });
-// });
-
 jQuery(function($) {
   $("#tabs ul li a").click(changeTab);
+  $("#tabs ul li a").mouseenter(showNumberOfFlights);
+  $("#tabs ul li a").mouseout(hideNumberOfFlights);
+
+  $("#tabs ul li a.active").click();
 });
+
+// jQuery(function($) {
+//   $("#tabs ul li a").bind({
+//     click: changeTab,
+//     mouseenter: showNumberOfFlights,
+//     mouseout: hideNumberOfFlights
+//   });
+//   $("#tabs ul li a.active").click();
+// });
