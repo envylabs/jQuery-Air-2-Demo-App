@@ -33,7 +33,7 @@ jQuery(function($) {
   $("#tabs ul li a").bind({
     click: changeTab,
     mouseenter: showNumberOfFlights,
-    mouseout: hideNumberOfFlights
+    mouseleave: hideNumberOfFlights
   });
   $("#tabs ul li:eq(2) a").click();
 });

@@ -52,10 +52,10 @@ jQuery(function($) {
   $("#tabs ul li a").bind({
     click: changeTab,
     mouseenter: showNumberOfFlights,
-    mouseout: hideNumberOfFlights
+    mouseleave: hideNumberOfFlights
   });
   // $("table a").live('click', selectFlight);
-  $("#tabs div").delegate('table tr td a', 'click', selectFlight);
+  $("#tabs div").delegate('#flights a', 'click', selectFlight);
   $("#tabs ul li:eq(2) a").click();
 });
 
@@ -100,7 +100,7 @@ jQuery(function($) {
 //   $("#tabs ul li a").bind({
 //     click: changeTab,
 //     mouseenter: function() { showNumberOfFlights(this); },
-//     mouseout: function() { hideNumberOfFlights(this); }
+//     mouseleave: function() { hideNumberOfFlights(this); }
 //   });
 //   
 //   $("#tabs div").delegate('table tr td a', 'click', selectFlight);

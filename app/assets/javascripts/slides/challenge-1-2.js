@@ -28,14 +28,14 @@ function hideNumberOfFlights(a) {
 // jQuery(function($) {
 //   $("#tabs ul li a").click(changeTab);
 //   $("#tabs ul li a").mouseenter(showNumberOfFlights);
-//   $("#tabs ul li a").mouseout(hideNumberOfFlights);
+//   $("#tabs ul li a").mouseleave(hideNumberOfFlights);
 // });
 
 jQuery(function($) {
   $("#tabs ul li a").bind({
     click: changeTab,
     mouseenter: showNumberOfFlights,
-    mouseout: hideNumberOfFlights
+    mouseleave: hideNumberOfFlights
   });
   $("#tabs ul li:eq(2) a").click();
 });

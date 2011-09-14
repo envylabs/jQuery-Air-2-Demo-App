@@ -7,6 +7,7 @@ jQuery(function($) {
 
 function fetch_flights(active_div) {
   $.ajax('/flights', {
+    data: { date: active_div },
     success: function(result) {
       $(active_div).html(result);
     }
@@ -43,7 +44,7 @@ function hideNumberOfFlights(a) {
 function selectFlight(e) {
   console.log(lesson + " selectFlight");
   e.preventDefault();
-  $("#tabs a.selected").removeClass('selected');
+  $("#flights a.selected").removeClass('selected');
   $(e.target).toggleClass('selected');
 }
 
@@ -52,10 +53,10 @@ jQuery(function($) {
   $("#tabs ul li a").bind({
     click: changeTab,
     mouseenter: showNumberOfFlights,
-    mouseout: hideNumberOfFlights
+    mouseleave: hideNumberOfFlights
   });
   // $("table a").bind('click', selectFlight);
-  $("table a").live('click', selectFlight);
+  $("#flights a").live('click', selectFlight);
   $("#tabs ul li:eq(2) a").click();
 });
 
@@ -98,7 +99,7 @@ jQuery(function($) {
 //   $("#tabs ul li a").bind({
 //     click: changeTab,
 //     mouseenter: function() { showNumberOfFlights(this); },
-//     mouseout: function() { hideNumberOfFlights(this); }
+//     mouseleave: function() { hideNumberOfFlights(this); }
 //   });
 //   
 //   $("table a").live('click', selectFlight);

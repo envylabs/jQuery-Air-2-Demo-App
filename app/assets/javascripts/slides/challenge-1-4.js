@@ -9,6 +9,7 @@ jQuery(function($) {
 
 function fetch_flights(active_div) {
   $.ajax('/flights', {
+    data: { date: active_div },
     success: function(result) {
       $(active_div).html(result);
     }
@@ -46,7 +47,7 @@ jQuery(function($) {
   $("#tabs ul li a").bind({
     click: changeTab,
     mouseenter: showNumberOfFlights,
-    mouseout: hideNumberOfFlights
+    mouseleave: hideNumberOfFlights
   });
 
   $("#tabs ul li:eq(2) a").click();
@@ -85,7 +86,7 @@ jQuery(function($) {
 //   $("#tabs ul li a").bind({
 //     click: changeTab,
 //     mouseenter: function() { showNumberOfFlights(this); },
-//     mouseout: function() { hideNumberOfFlights(this); }
+//     mouseleave: function() { hideNumberOfFlights(this); }
 //   });
 //   $("#tabs ul li a.active").click();
 // });
