@@ -6,4 +6,8 @@ class FlightsController < ApplicationController
     
     @flights = Flight.where(depart: d.beginning_of_day..d.end_of_day)
   end
+  
+  def fail
+    head :unprocessable_entity
+  end
 end
