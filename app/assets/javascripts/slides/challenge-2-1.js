@@ -36,7 +36,7 @@ function showNumberOfFlights(e) {
 }
 
 function hideNumberOfFlights(a) {
-  console.log(lesson + " showNumberOfFlights");
+  console.log(lesson + " hideNumberOfFlights");
   $("#tabs span.tooltip").remove();
 }
 
