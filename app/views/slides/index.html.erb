@@ -17,141 +17,108 @@
   
   <div id="error">
     <h2>Whoops, unable to pull flights.</h2> 
-    Sorry about that, <a href='#'>Click here</a> to try again.
+    <p>Sorry about that, <a href='#'>Click here</a> to try again.<p>
   </div>
   
   <div id="loading">
-    <h2>Just a minute while we pull up your flight</h2> 
-    <%= image_tag 'spinner.gif' %>
+    <h2>Just a minute while we pull up your flight</h2>
   </div>
 </section>
 
-<style>
-#confirm {
-  margin:20px auto;
-  width: 430px;
-  background-color: #ccc;
-  border: 1px solid black;
-}
-#flight_review {
-  background-color: #bbb;
-  width: 250px;
-  margin: 10px;
-  float: left;
-}
-#calendar {
-  width: 30px;
-  font-weight: bold;
-  font-size: 1.5em;
-  margin:10px;
-  float:left;
-}
-#flightNum {
-  margin: 15px, 5px;
-}
-#departure {
-  margin: 5px;
-  float:left;
-}
-#to {
-  margin: 10px;
-  float: left; 
-}
-#arrival {
-  margin: 5px;
-  float: left; 
-}
-
-#cost {
-  clear:left;
-}
-
-#login {
-  margin-top: 40px;
-  width: 160px;
-  background-color: #EEE;
-  float:left;
-}
-
-form#confirm_purchase {
-  margin-left: 200px;
-}
-</style>
-
 <section id="confirm">
-  <div id="flight_review">
-    <div id="calendar">Sep <br />23</div>
-   
-    <div id="flightNum">Flight #2344</div>
+  <div class="flight-review">
+    <div class="flight-info">
+      <h2>Flight #2344</h2>
+      <h3><b>Sep</b>23</h3>
     
-    <div id="departure">
-      Orlando, FL<br />
-      3:40 PM
+      <span class="flight-depart">
+        <strong>Orlando, FL</strong>
+        3:40 PM
+      </span>
+      <span class="arrow">To</span>
+      <span class="flight-arrive">
+        <strong>New York, NY</strong>
+        5:30 PM
+      </span>
     </div>
-    <div id="to">
-        =>
-    </div>
-    <div id="arrival">
-      New York, NY<br />
-      5:30 PM
-    </div>
+    
+    <table>
+      <tr>
+        <th>Base Price:</th>
+        <td>$432</td>
+      </tr>
+      <tr>
+        <th>Govt. Taxes and Fees:</th>
+        <td>$123</td>
+      </tr>
+      <tr class="total">
+        <th>Trip Total:</th>
+        <td>$555</td>
+      </tr>
+    </table>
+  </div>
 
-    <div id="cost">
-      <table>
-      <tr><td>Base Price:</td><td>$432</td></tr>
-      <tr><td>Govt. Taxes and Fees:</td><td>$123</td></tr>
-      <tr><td><strong>Trip Total:</td><td>$555</td></tr>
-      </table>
-    </div>
-  </div>
-  <div id="login">
-    Please login to book flight:<br / >
-    <form>
-      Email: <input type='text_field' /><br />
-      Password: <input type='text_field' />
+  <form class="session">
+    <h4>Please login to book flight:</h4>
+    <p>
+      <label>Email:</label>
+      <input type='text' />
+    </p>
+    <p>
+      <label>Password:</label>
+      <input type='text' />
+    </p>
+    <p>
       <input type='submit' value="Login" />
-    </form>
-  </div>
+    </p>
+  </form>
   
-  <form id="confirm_purchase">
-    <input type="submit" value="Confirm Purchase & Select Seats" />
+  <form class="confirm-purchase">
+    <input type="submit" value="Confirm Purchase &amp; Select Seats" />
   </form>
 </section>
-           
-<section id="confirm">
-  <div id="flight_review">
-    <div id="calendar">Sep <br />23</div>
-   
-    <div id="flightNum">Flight #2344</div>
-    
-    <div id="departure">
-      Orlando, FL<br />
-      3:40 PM
-    </div>
-    <div id="to">
-        =>
-    </div>
-    <div id="arrival">
-      New York, NY<br />
-      5:30 PM
-    </div>
 
-    <div id="cost">
-      <table>
-      <tr><td>Base Price:</td><td>$432</td></tr>
-      <tr><td>Govt. Taxes and Fees:</td><td>$123</td></tr>
-      <tr><td><strong>Trip Total:</td><td>$555</td></tr>
-      </table>
+<section id="confirm">
+  <div class="flight-review">
+    <div class="flight-info">
+      <h2>Flight #2344</h2>
+      <h3><b>Sep</b>23</h3>
+    
+      <span class="flight-depart">
+        <strong>Orlando, FL</strong>
+        3:40 PM
+      </span>
+      <span class="arrow">To</span>
+      <span class="flight-arrive">
+        <strong>New York, NY</strong>
+        5:30 PM
+      </span>
     </div>
+    
+    <table>
+      <tr>
+        <th>Base Price:</th>
+        <td>$432</td>
+      </tr>
+      <tr>
+        <th>Govt. Taxes and Fees:</th>
+        <td>$123</td>
+      </tr>
+      <tr class="total">
+        <th>Trip Total:</th>
+        <td>$555</td>
+      </tr>
+    </table>
   </div>
-  <div id="login">
-    Welcome back Gregg!<br / >
-    You will earn 4234 frequent flyer miles on this flight!<br />
-    Please confirm your purchase below.
+
+  <div class="session">
+    <h4>Welcome back Gregg!</h4>
+    <p>You will earn 4234 frequent flyer miles on this flight!</p>
+    <p>Please confirm your purchase below.</p>
   </div>
   
-  <form id="confirm_purchase">
-    <input type="submit" value="Confirm Purchase & Select Seats" />
+  <form class="confirm-purchase">
+    <input type="submit" value="Confirm Purchase &amp; Select Seats" />
   </form>
 </section>
 

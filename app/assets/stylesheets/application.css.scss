@@ -31,43 +31,111 @@ article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section { 
 
 
 //-----------------------------------------------------------------------
+//  Sass Variables
+//-----------------------------------------------------------------------
+
+$base: 'Lucida Sans Unicode', 'Lucida Sans', Geneva, sans-serif;
+$bold: 'Lucida Sans', Geneva, Arial, sans-serif; 
+$header: 'YanoneKaffeesatzBold', 'Lucida Sans', Geneva, sans-serif;
+
+
+
+//-----------------------------------------------------------------------
+//  Sass Mixins
+//-----------------------------------------------------------------------
+
+@mixin border-radius($arguments) {
+  -webkit-border-radius: $arguments;
+  -moz-border-radius: $arguments;
+  -o-border-radius: $arguments;
+  border-radius: $arguments;
+}
+@mixin box-shadow($arguments) {
+  -webkit-box-shadow: $arguments;
+  -moz-box-shadow: $arguments;
+  -o-box-shadow: $arguments;
+  box-shadow: $arguments;
+}
+@mixin linear-gradient($color, $top, $bottom) {
+  background-color: $color;
+  background-image: -webkit-gradient(linear, left top, left bottom, from($top), to($bottom));
+  background-image: -webkit-linear-gradient(top, $top, $bottom);
+  background-image: -moz-linear-gradient(top, $top, $bottom);
+  background-image: -ms-linear-gradient(top, $top, $bottom);
+  background-image: -o-linear-gradient(top, $top, $bottom);
+  background-image: linear-gradient(top, $top, $bottom);
+}
+@mixin opacity($opacity) {
+  filter: alpha(opacity=#{$opacity*100}); // IE 5-9+
+  opacity: $opacity;
+}
+
+// ----- Classes for Extend ----- //
+
+.group {
+  zoom: 1;
+  &:before,
+  &:after {
+    content: '';
+    display: table;
+  };
+  &:after {
+    clear: both;
+  }
+}
+.texthide {
+  text-indent: -9999em;
+  text-transform: capitalize;
+}
+
+
+
+//-----------------------------------------------------------------------
 //  Global Items
 //-----------------------------------------------------------------------
 
 html {
   font-size: 16px;
   height: 100%;
+  min-width: 600px;
 }
 body {
   background: #ede0d8 url(/assets/body-background.jpg) top center no-repeat;
   color: #4c3f31;
-  font: normal 62.5%/1.3em 'Lucida Sans Unicode', 'Lucida Sans', Geneva, sans-serif; // 1em = 10px
+  font: normal 62.5%/1.3em $base; // 1em = 10px
   padding: 20px 0;
 }
 strong {
-  font-family: 'Lucida Sans', Geneva, Arial, sans-serif; 
+  font-family: $bold;
+}
+p {
+  font-size: 1.3em;
+  line-height: 1.3em;
 }
 
 // ----- Headers ------ //
 
 header {
-  background-color: #9dacac;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#b0bfbf), to(#9dacac));
-  background-image: -webkit-linear-gradient(top, #b0bfbf, #9dacac);
-  background-image: -moz-linear-gradient(top, #b0bfbf, #9dacac);
-  background-image: -ms-linear-gradient(top, #b0bfbf, #9dacac);
-  background-image: linear-gradient(top, #b0bfbf, #9dacac);
-  -webkit-border-radius: 10px 10px 0 0;
-  -moz-border-radius: 10px 10px 0 0;
-  border-radius: 10px 10px 0 0;
+  @include border-radius(10px 10px 0 0);
+  @include linear-gradient(#9dacac, #b0bfbf, #9dacac);
   margin: 0 auto;
   padding: 8px 10px;
   width: 430px;
 }
 h1 {
   color: #717b7c;
-  font: bold 3em/1em 'YanoneKaffeesatzBold', 'Lucida Sans', Geneva, sans-serif;
+  font: bold 3em/1em $header;
   text-transform: uppercase;
+}
+h2 {
+  font: bold 2.2em/1em $header;
+  margin: 0 0 5px;
+}
+h4 {
+  color: #717b7c;
+  font: bold 1.8em/1em $header;
+  letter-spacing: 0.05em;
+  margin: 0 0 8px;
 }
 
 
@@ -77,36 +145,24 @@ h1 {
 //-----------------------------------------------------------------------
 
 #tabs {
-  background-color: #e8e2d4;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#e8e2d4), to(#f5f3ed));
-  background-image: -webkit-linear-gradient(top, #e8e2d4, #f5f3ed);
-  background-image: -moz-linear-gradient(top, #e8e2d4, #f5f3ed);
-  background-image: -ms-linear-gradient(top, #e8e2d4, #f5f3ed);
-  background-image: linear-gradient(top, #e8e2d4, #f5f3ed);
-  -webkit-border-radius: 0 0 10px 10px;
-  -moz-border-radius: 0 0 10px 10px;
-  border-radius: 0 0 10px 10px;
-  margin: 0 auto;
+  @include border-radius(0 0 10px 10px);
+  @include linear-gradient(#e8e2d4, #e8e2d4, #f5f3ed);
+  margin: 0 auto 20px;
   padding: 0 0 7px;
   width: 450px;
   
   // ----- Date Select ----- //
 
   ul {
-    background-color: #bda98f;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#af9c83), to(#bda98f));
-    background-image: -webkit-linear-gradient(top, #af9c83, #bda98f);
-    background-image: -moz-linear-gradient(top, #af9c83, #bda98f);
-    background-image: -ms-linear-gradient(top, #af9c83, #bda98f);
-    background-image: linear-gradient(top, #af9c83, #bda98f);
-    height: 32px;
+    @include linear-gradient(#bda98f, #af9c83, #bda98f);
+    @extend .group;
     li {
       float: left;
       a {
         border-top: 2px solid #8d9899;
         color: #fff;
         display: block;
-        font: bold 1.3em/30px 'Lucida Sans', Geneva, Arial, sans-serif;
+        font: bold 1.3em/30px $bold;
         position: relative;
         text-align: center;
         text-shadow: 0 1px rgba(0,0,0,0.2);
@@ -128,10 +184,8 @@ h1 {
           }
         }
         span {
+          @include border-radius(3px);
           background-color: #4c3f31;
-          -webkit-border-radius: 3px;
-          -moz-border-radius: 3px;
-          border-radius: 3px;
           color: #e0d2c1;
           display: block;
           font-size: 0.8em;
@@ -168,7 +222,7 @@ h1 {
     width: 100%;
     th {
       border-bottom: 1px solid #d5cec0;
-      font: bold 1.7em/1em 'YanoneKaffeesatzBold', 'Lucida Sans', Geneva, sans-serif;
+      font: bold 1.7em/1em $header;
       padding: 10px;
       text-align: center;
       text-transform: uppercase;
@@ -178,11 +232,9 @@ h1 {
       padding: 10px 10px;
       text-align: center;
       a {
-        -webkit-border-radius: 15px;
-        -moz-border-radius: 15px;
-        border-radius: 15px;
+        @include border-radius(15px);
         color: #b50324;
-        font-family: 'Lucida Sans', Geneva, Arial, sans-serif;
+        font-family: $bold;
         font-weight: bold;
         padding: 0 10px;
         &.selected {
@@ -194,9 +246,197 @@ h1 {
       background: #e3ddd0;
     }
   }
+  
+  // ----- Loading ----- //
+  
+  #loading {
+    background: url(/assets/loading.gif) center 75px no-repeat;
+    padding: 40px 10px 80px;
+    text-align: center;
+  }
+  
+  // ----- Error ----- //
+  
+  #error {
+    padding: 40px 10px 40px;
+    text-align: center;
+    a {
+      color: #b40324;
+      text-decoration: underline;
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+    }
+  }
 }
 
 
+
+//-----------------------------------------------------------------------
+//  Confirm
+//-----------------------------------------------------------------------
+
+#confirm {
+  @include box-shadow(0 0 0 5px #bda98f);
+  @include linear-gradient(#bda98f, #af9c83, #bda98f);
+  border-top: 1px solid #decdb9;
+  border-bottom: 1px solid #decdb9;
+  margin: 0 auto 20px;
+  padding: 10px;
+  position: relative;
+  width: 420px;
+  
+  // ----- Review ----- //
+  
+  .flight-review {
+    padding: 0 125px 0 0;
+    
+    // Info
+    
+    .flight-info {
+      @extend .group;
+      margin: 0 0 10px;
+      padding: 0 0 0 45px;
+      position: relative;
+      h3 {
+        @include border-radius(3px);
+        @include box-shadow(0 2px 3px rgba(0,0,0,0.2));
+        background: #ece8dd;
+        font: bold 1.7em/1em $bold;
+        height: 35px;
+        left: 0;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 35px;
+        b {
+          @include border-radius(3px 3px 0 0);
+          background: #b40324;
+          color: #ece8dd;
+          display: block;
+          font: bold 0.55em/14px $bold;
+          margin: 0 0 1px;
+          text-shadow: 0 1px rgba(0,0,0,0.4);
+          text-transform: uppercase;
+        }
+      }
+      span {
+        color: #15120e;
+        float: left;
+        font-size: 1.2em;
+        strong {
+          display: block;
+          font-size: 1.1em;
+          margin: 0 0 3px;
+        }
+        &.arrow {
+          @extend .texthide;
+          background: url(/assets/plane.png) center no-repeat;
+          height: 28px;
+          width: 40px;
+        }
+      }
+    }
+    
+    // Table 
+    
+    table {
+      background: #97866f;
+      color: #ece8dd;
+      font-size: 1.2em;
+      text-shadow: 0 1px rgba(0,0,0,0.2);
+      width: 100%;
+      th {
+        border-bottom: 1px solid #bda98f;
+        padding: 7px 10px 7px 45px;
+        text-align: left;
+      }
+      td {
+        border-bottom: 1px solid #bda98f;
+        padding: 7px 10px;
+      }
+      .total{
+        th,
+        td {
+          background: #887964;
+          color: #fff;
+          font: bold 1.2em $bold;
+        }
+      }
+    }
+  }
+  
+  // ----- Session ----- //
+  
+  .session {
+    @include border-radius(3px);
+    @include box-shadow(0 2px 5px rgba(0,0,0,0.1));
+    @include linear-gradient(#9dacac, #b0bfbf, #9dacac);
+    @extend .group;
+    border-top: 1px solid #fff;
+    padding: 10px 10px 12px;
+    position: absolute;
+    right: -50px;
+    top: -1px;
+    width: 155px;
+    p {
+      color: #3e4141;
+      font-size: 1.1em;
+      margin: 0 0 7px;
+      &:last-child {
+        margin: 0;
+      }
+      label {
+        display: block;
+        font-family: $bold;
+        font-weight: bold;
+        margin: 0 0 2px;
+      }
+      input[type="text"] {
+        @include border-radius(3px);
+        background: #ece8dd;
+        border: 1px solid #fff;
+        color: #3e4141;
+        padding: 5px 0;
+        width: 100%;
+      }
+      input[type="submit"] {
+        @include border-radius(3px);
+        background: #3e4141;
+        border: 0;
+        color: #ece8dd;
+        cursor: pointer;
+        padding: 6px 10px 7px;
+        &:hover,
+        &:focus {
+          background: #525757;
+        }
+      }
+    }
+  }
+  
+  // ----- Submit ----- //
+  
+  .confirm-purchase {
+    padding: 10px 0 0 45px;
+    input {
+      @include border-radius(3px);
+      background: #ece8dd;
+      border: 0;
+      border-top: 1px solid #fff;
+      border-bottom: 1px solid #6a5a49;
+      color: #4c3f31;
+      cursor: pointer;
+      padding: 6px 10px 7px;
+      text-shadow: 0 1px #fff;
+      &:hover,
+      &:focus {
+        background: #fff;
+      }
+    }
+  }
+}
 
 
 
