@@ -8,39 +8,46 @@ Teaching: .ajaxCallbacks success, cache: false
 
 See http://net.tutsplus.com/tutorials/javascript-ajax/5-ways-to-make-ajax-calls-with-jquery/
 
+show .get?
+
 2. Server returns an error.  A problem will happen, and we'll need to debug, and then add the code so it will show  "Unable to load flights, click here to try again"
 
-Teaching: failure callback, and debug on chrome.
+Teaching: error callback, and debug on chrome.
 
 3. Refactoring.. to introduce a "loading" div
 
 Teaching: before and complete callbacks
 
+(add 2 second delay to controller)
 before ajax callback to hide current flights, and show loading div
 complete callback to hide loading div and show current flights
 
-4. Selecting a flight, sending that flight data over, and show total box with jQuery Air Login/Pass. 
+4. Show how it works, except if we click on multiple tabs at once.  
+
+Teaching: Ajax can set to a variable, and aborted.  However this calls error, so we'll need to catch that.
+
+5. Selecting a flight, sending that flight data over, and show total box with jQuery Air Login/Pass. 
 
 Teaching: How to send complex data using JSON, and receiving back JSON to populate hidden div. Cover the "dataType" parameter.  Type of data we're expecting back from server.  
 
 Also show same query using $.getJSON
 call would return { 'price': 144.00, 'tax': 24.00 }, internally we'd call showTotal({})
 
-5. Change call to use JSONP..  send with it, a callback method.
+6. Change call to use JSONP..  send with it, a callback method.
 
 Teaching: JSON P
 showTotal({});
 
 Also show with $.getScript
 
-6. Do a POST request for Login/Pass.  If valid, show Book Flight and Choose Seats Button.
+7. Do a POST request for Login/Pass.  If valid, show Book Flight and Choose Seats Button.
 Detect the proper status code.  OKAY for success, Unauthorized for failure.
 
 Teaches: Types, read status codes
 
 Also, show refactor into using the jQuery.post method.
 
-7. Define a timeout for the ajax call.
+8. Define a timeout for the ajax call.
 
 Teaches: Timeout
 

@@ -14,7 +14,48 @@
   <div id="2012-09-29">Loading Sep 29</div>
   <div id="2012-09-30">Loading Sep 30</div>
   <div id="2012-10-01">Loading Oct 1</div>
+  
+  <div id="error">
+    <h2>Whoops, unable to pull flights.</h2> 
+    Sorry about that, <a href='#'>Click here</a> to try again.
+  </div>
+  
+  <div id="loading">
+    <h2>Just a minute while we pull up your flight</h2> 
+    <%= image_tag 'spinner.gif' %>
+  </div>
 </section>
+
+<style>
+
+
+</style>
+
+<section id="confirm">
+  <div id="calendar">Sep 23</div>
+  <div id="departure">
+    Orlando, FL<br />
+    3:40 PM
+  </div>
+  <div id="arrival">
+    Orlando, FL<br />
+    3:40 PM
+  </div>
+  <div id="cost">
+    Base Price: $432<br />
+    Govt. Taxes and Fees: $123<br />
+    <strong>Trip Total: $555</strong>
+  </div>
+  <div id="login">
+    Please login to book flight:<br / >
+    <form>
+      Email: <input type='text_field' /><br />
+      Password: <input type='text_field' />
+      <input type='submit' value="Login" />
+    </form>
+  </div>
+  <br />
+           
 
 
 <% content_for :inline_javascript do %>

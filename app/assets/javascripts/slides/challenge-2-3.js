@@ -1,20 +1,26 @@
-var lesson = "2-2";
+var lesson = "2-3";
 
 jQuery(function($) {
-  question("Failure on server");
+  question("Loading Flights");
 });
 
 function fetch_flights(active_div) {
-  $.ajax('/flighs', {  // Changed path to cause error 
+  $.ajax('/flights', {  // Changed path to cause error 
     data: { date: active_div },
     cache: false, 
+    beforeSend: function(result) {
+      $('#tabs #loading').show();
+    },
+    complete: function(result) {
+      $('#tabs #loading').hide();
+    },
     success: function(result) {
       $(active_div).html(result);
-      $('#error').hide(); // hide error
+      $('#tabs #error').hide();
       $(active_div).show(); 
     },
-    error: function(result) { // added callback
-      $('#error').show(); 
+    error: function(result) {
+      $('#tabs #error').show();
     }
   });
 }
@@ -60,8 +66,7 @@ jQuery(function($) {
     mouseleave: hideNumberOfFlights
   });
   
-  // Added error div link reload
-  $("#error a").click(function (e){
+  $("#tabs #error a").click(function (e){
     e.preventDefault();
     fetch_flights($("#tabs li a.active").attr("href"));
   });
