@@ -27,24 +27,82 @@
 </section>
 
 <style>
+#confirm {
+  margin:20px auto;
+  width: 430px;
+  background-color: #ccc;
+  border: 1px solid black;
+}
+#flight_review {
+  background-color: #bbb;
+  width: 250px;
+  margin: 10px;
+  float: left;
+}
+#calendar {
+  width: 30px;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin:10px;
+  float:left;
+}
+#flightNum {
+  margin: 15px, 5px;
+}
+#departure {
+  margin: 5px;
+  float:left;
+}
+#to {
+  margin: 10px;
+  float: left; 
+}
+#arrival {
+  margin: 5px;
+  float: left; 
+}
 
+#cost {
+  clear:left;
+}
 
+#login {
+  margin-top: 40px;
+  width: 160px;
+  background-color: #EEE;
+  float:left;
+}
+
+form#confirm_purchase {
+  margin-left: 200px;
+}
 </style>
 
 <section id="confirm">
-  <div id="calendar">Sep 23</div>
-  <div id="departure">
-    Orlando, FL<br />
-    3:40 PM
-  </div>
-  <div id="arrival">
-    Orlando, FL<br />
-    3:40 PM
-  </div>
-  <div id="cost">
-    Base Price: $432<br />
-    Govt. Taxes and Fees: $123<br />
-    <strong>Trip Total: $555</strong>
+  <div id="flight_review">
+    <div id="calendar">Sep <br />23</div>
+   
+    <div id="flightNum">Flight #2344</div>
+    
+    <div id="departure">
+      Orlando, FL<br />
+      3:40 PM
+    </div>
+    <div id="to">
+        =>
+    </div>
+    <div id="arrival">
+      New York, NY<br />
+      5:30 PM
+    </div>
+
+    <div id="cost">
+      <table>
+      <tr><td>Base Price:</td><td>$432</td></tr>
+      <tr><td>Govt. Taxes and Fees:</td><td>$123</td></tr>
+      <tr><td><strong>Trip Total:</td><td>$555</td></tr>
+      </table>
+    </div>
   </div>
   <div id="login">
     Please login to book flight:<br / >
@@ -54,9 +112,48 @@
       <input type='submit' value="Login" />
     </form>
   </div>
-  <br />
+  
+  <form id="confirm_purchase">
+    <input type="submit" value="Confirm Purchase & Select Seats" />
+  </form>
+</section>
            
+<section id="confirm">
+  <div id="flight_review">
+    <div id="calendar">Sep <br />23</div>
+   
+    <div id="flightNum">Flight #2344</div>
+    
+    <div id="departure">
+      Orlando, FL<br />
+      3:40 PM
+    </div>
+    <div id="to">
+        =>
+    </div>
+    <div id="arrival">
+      New York, NY<br />
+      5:30 PM
+    </div>
 
+    <div id="cost">
+      <table>
+      <tr><td>Base Price:</td><td>$432</td></tr>
+      <tr><td>Govt. Taxes and Fees:</td><td>$123</td></tr>
+      <tr><td><strong>Trip Total:</td><td>$555</td></tr>
+      </table>
+    </div>
+  </div>
+  <div id="login">
+    Welcome back Gregg!<br / >
+    You will earn 4234 frequent flyer miles on this flight!<br />
+    Please confirm your purchase below.
+  </div>
+  
+  <form id="confirm_purchase">
+    <input type="submit" value="Confirm Purchase & Select Seats" />
+  </form>
+</section>
 
 <% content_for :inline_javascript do %>
   
