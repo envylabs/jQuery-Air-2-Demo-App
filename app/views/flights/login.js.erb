@@ -1,0 +1,7 @@
+<% if @logged_in %>
+  $('#login').html("<%= escape_javascript(render 'welcome') %>");
+  $('#confirm .confirm-purchase').slideDown();
+  $("#confirm tr.total td, #confirm tr.total th").css('background-color', '#2C1F11');
+<% else %>
+  $('#login h4').text("Invalid Email/Password. Try Again").slideDown();
+<% end %>
