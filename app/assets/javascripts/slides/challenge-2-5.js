@@ -1,6 +1,6 @@
 jQuery(function($) {
 
-  var lesson = "2-4";
+  var lesson = "2-5";
 
   question("Select the flight, show price total");
 
@@ -60,6 +60,31 @@ jQuery(function($) {
     e.preventDefault();
     $("#tabs a.selected").removeClass('selected');
     $(e.target).toggleClass('selected');
+    
+    var flight = $(e.target).data('flight');
+    var class = $(e.target).data('class');
+    
+    console.log(lesson + " flight " + flight + " & class = " + class);
+    
+    $('#confirm').hide();
+    
+    $.ajax('/flights/' + flight, {
+      data: { 'class': class },
+      dataType: 'json',
+      success: showTotal
+    });
+    
+    // Also can do
+    // $.getJSON('/flights/' + flight, 
+    //           { 'class': class }, 
+    //           showTotal);
+  }
+  
+  function showTotal(json) {
+    $('#price').text(json.price);
+    $('#fees').text(json.fees);
+    $('#total').text(json.total);
+    $('#confirm').slideDown();
   }
 
   $("#tabs ul li a").bind({

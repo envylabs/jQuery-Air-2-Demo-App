@@ -3,12 +3,15 @@ Jquery2::Application.routes.draw do
   
   match '/challenges', :to => 'challenges#index'
   match '/slides', :to => 'slides#index'
-
+  match '/login', :to => 'flights#login'
+  
   resources :flights do
     collection do
       post :fail
     end
   end
+  
+  match '/flights_jsonp/:id', :to => 'flights#show_jsonp'
 
   resources :reservations do
     collection do

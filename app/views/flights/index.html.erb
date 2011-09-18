@@ -15,8 +15,8 @@
     <td><%= f.arrive_time %></td>
     <td><%= f.flight %></td>
     <td><%= stop_friendly(f.stops) %></td>
-    <td><a href="#"><%= number_to_currency f.first_class_price, precision: 0 %></a></td>
-    <td><a href="#"><%= number_to_currency f.economy_price, precision: 0 %></a></td>
+    <td><a href="#" data-flight="<%= f.flight %>" data-class="first_class"><%= number_to_currency f.first_class_price, precision: 0 %></a></td>
+    <td><a href="#" data-flight="<%= f.flight %>" data-class="economy"><%= number_to_currency f.economy_price, precision: 0 %></a></td>
   </tr>
   <% end %>
 </table>

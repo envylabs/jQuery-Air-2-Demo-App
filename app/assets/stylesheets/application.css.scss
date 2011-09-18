@@ -286,6 +286,7 @@ h4 {
   padding: 10px;
   position: relative;
   width: 420px;
+  display: none;
   
   // ----- Review ----- //
   
@@ -369,7 +370,7 @@ h4 {
   
   // ----- Session ----- //
   
-  .session {
+  #login {
     @include border-radius(3px);
     @include box-shadow(0 2px 5px rgba(0,0,0,0.1));
     @include linear-gradient(#9dacac, #b0bfbf, #9dacac);
@@ -380,6 +381,7 @@ h4 {
     right: -50px;
     top: -1px;
     width: 155px;
+    
     p {
       color: #3e4141;
       font-size: 1.1em;
@@ -419,11 +421,13 @@ h4 {
   // ----- Submit ----- //
   
   .confirm-purchase {
-    padding: 10px 0 0 45px;
+    display:none;
+    padding: 10px 0 0 20px;
     input {
       @include border-radius(3px);
       background: #ece8dd;
       border: 0;
+      font-size: 1.5em;
       border-top: 1px solid #fff;
       border-bottom: 1px solid #6a5a49;
       color: #4c3f31;

@@ -27,100 +27,44 @@
 
 <section id="confirm">
   <div class="flight-review">
-    <div class="flight-info">
-      <h2>Flight #2344</h2>
-      <h3><b>Sep</b>23</h3>
-    
-      <span class="flight-depart">
-        <strong>Orlando, FL</strong>
-        3:40 PM
-      </span>
-      <span class="arrow">To</span>
-      <span class="flight-arrive">
-        <strong>New York, NY</strong>
-        5:30 PM
-      </span>
-    </div>
-    
     <table>
       <tr>
         <th>Base Price:</th>
-        <td>$432</td>
+        <td id="price">$432</td>
       </tr>
       <tr>
         <th>Govt. Taxes and Fees:</th>
-        <td>$123</td>
+        <td id="fees">$123</td>
       </tr>
       <tr class="total">
         <th>Trip Total:</th>
-        <td>$555</td>
+        <td id="total">$555</td>
       </tr>
     </table>
   </div>
 
-  <form class="session">
-    <h4>Please login to book flight:</h4>
-    <p>
-      <label>Email:</label>
-      <input type='text' />
-    </p>
-    <p>
-      <label>Password:</label>
-      <input type='text' />
-    </p>
-    <p>
-      <input type='submit' value="Login" />
-    </p>
-  </form>
-  
+  <div id="login">
+    <form>
+      <h4>Please login to book flight:</h4>
+      <p>
+        <label>Email:</label>
+        <input type='email' name='email' id='email' />
+      </p>
+      <p>
+        <label>Password:</label>
+        <input type='password' name='password' id='password' />
+      </p>
+      <p>
+        <input type='submit' value="Login" /> 
+      </p>
+    </form>
+  </div>
+    
   <form class="confirm-purchase">
     <input type="submit" value="Confirm Purchase &amp; Select Seats" />
   </form>
 </section>
 
-<section id="confirm">
-  <div class="flight-review">
-    <div class="flight-info">
-      <h2>Flight #2344</h2>
-      <h3><b>Sep</b>23</h3>
-    
-      <span class="flight-depart">
-        <strong>Orlando, FL</strong>
-        3:40 PM
-      </span>
-      <span class="arrow">To</span>
-      <span class="flight-arrive">
-        <strong>New York, NY</strong>
-        5:30 PM
-      </span>
-    </div>
-    
-    <table>
-      <tr>
-        <th>Base Price:</th>
-        <td>$432</td>
-      </tr>
-      <tr>
-        <th>Govt. Taxes and Fees:</th>
-        <td>$123</td>
-      </tr>
-      <tr class="total">
-        <th>Trip Total:</th>
-        <td>$555</td>
-      </tr>
-    </table>
-  </div>
-
-  <div class="session">
-    <h4>Welcome back Gregg!</h4>
-    <p>You will earn 4234 frequent flyer miles on this flight!</p>
-    <p>Please confirm your purchase below.</p>
-  </div>
-  
-  <form class="confirm-purchase">
-    <input type="submit" value="Confirm Purchase &amp; Select Seats" />
-  </form>
-</section>
 
 <% content_for :inline_javascript do %>
   
