@@ -26,30 +26,29 @@ complete callback to hide loading div and show current flights
 
 Teaching: Ajax can set to a variable, and aborted.  However this calls error, so we'll need to catch that.
 
-5. Selecting a flight, sending that flight data over, and show total box with jQuery Air Login/Pass. 
+5. Define a timeout for the ajax call.
+
+Teaches: Timeout
+
+6. Selecting a flight, sending that flight data over, and show total box with jQuery Air Login/Pass. 
 
 Teaching: How to send complex data using JSON, and receiving back JSON to populate hidden div. Cover the "dataType" parameter.  Type of data we're expecting back from server.  
 
 Also show same query using $.getJSON
 call would return { 'price': 144.00, 'tax': 24.00 }, internally we'd call showTotal({})
 
-6. Change call to use JSONP..  send with it, a callback method.
+7. Change call to use JSONP..  send with it, a callback method.
 
 Teaching: JSON P
 showTotal({});
 
 Also show with $.getScript
 
-7. Do a POST request for Login/Pass.  If valid, show Book Flight and Choose Seats Button.
-Detect the proper status code.  OKAY for success, Unauthorized for failure.
+8. Do a POST request for Login/Pass.  Show how to do a script request, and use type: post
 
-Teaches: Types, read status codes
+Teaches: script, and type. POST.
 
 Also, show refactor into using the jQuery.post method.
-
-8. Define a timeout for the ajax call.
-
-Teaches: Timeout
 
 
 // Something we can add... color animation.. make total price darker.  

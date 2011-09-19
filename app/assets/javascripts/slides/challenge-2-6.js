@@ -1,12 +1,13 @@
 jQuery(function($) {
 
-  var lesson = "2-6";
+  var lesson = "2-5";
 
-  question("Use JSON P");
+  question("Select the flight, show price total");
 
   var fetching_flights = null;
 
-  function fetch_flights(active_div) {
+  function showFlights(active_div) {
+    $("#tabs div").hide();
     if (fetching_flights) {
       fetching_flights.abort();
     }
@@ -41,11 +42,6 @@ jQuery(function($) {
     showFlights($(e.target).attr("href"));
   }
 
-  function showFlights(active_div) {
-    $("#tabs div").hide();
-    fetch_flights(active_div);
-  }
-
   function showNumberOfFlights(e) {
     var num_flights = $(e.target).data('flights');
     $(e.target).append("<span class='tooltip'>"+ num_flights 
@@ -68,36 +64,25 @@ jQuery(function($) {
     
     $('#confirm').hide();
     
-    // must also move showTotal out of the jQuery block
-    $.ajax('/flights_jsonp/' + flight, {
+    $.ajax('/flights/' + flight, {
       data: { 'class': class },
-      dataType: 'jsonp',
+      dataType: 'json',
       success: showTotal
     });
     
-    // Also show
-    
-    // function fetchWeather() {
-    //   $.ajax('http://autocomplete.wunderground.com/aq?query=Orlando,%20Florida&format=JSON&cb=printWeather', {
-    //     dataType: 'jsonp'
-    //   });
-    // }
-    // 
-    // function printWeather(json){
-    //   console.log(json);
-    // }
+    // Also can do
+    // $.getJSON('/flights/' + flight, 
+    //           { 'class': class }, 
+    //           showTotal);
   }
   
   function showTotal(json) {
-    console.log("Called showTotal!");
-    console.log(json);
     $('#price').text(json.price);
     $('#fees').text(json.fees);
     $('#total').text(json.total);
     $('#confirm').slideDown();
   }
-  
-// jsonpCallback: 'showTotal'
+
   $("#tabs ul li a").bind({
     click: changeTab,
     mouseenter: showNumberOfFlights,
@@ -106,11 +91,9 @@ jQuery(function($) {
 
   $("#tabs #error a").click(function (e){
     e.preventDefault();
-    fetch_flights($("#tabs li a.active").attr("href"));
+    showFlights($("#tabs li a.active").attr("href"));
   });
 
   $("#tabs div").delegate('#flights a', 'click', selectFlight);
   $("#tabs ul li:eq(2) a").click();
 });
-
-

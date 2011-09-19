@@ -4,8 +4,9 @@ jQuery(function($) {
   question("Failure on server");
 });
 
-function fetch_flights(active_div) {
-  $.ajax('/flighs', {  // Changed path to cause error 
+function showFlights(active_div) {
+  $("#tabs div").hide();
+  $.ajax('/flights', {  // Changed path to cause error 
     data: { date: active_div },
     cache: false, 
     success: function(result) {
@@ -20,7 +21,6 @@ function fetch_flights(active_div) {
 }
 
 function changeTab(e) {
-  console.log(lesson + " changeTab");
   e.preventDefault();
   $("#tabs li a.active").removeClass("active").click(changeTab);
   $(e.target).addClass("active").unbind("click", changeTab);
@@ -28,25 +28,17 @@ function changeTab(e) {
   showFlights($(e.target).attr("href"));
 }
 
-function showFlights(active_div) {
-  $("#tabs div").hide();
-  fetch_flights(active_div);
-}
-
 function showNumberOfFlights(e) {
-  console.log(lesson + " showNumberOfFlights");
   var num_flights = $(e.target).data('flights');
   $(e.target).append("<span class='tooltip'>"+ num_flights 
                       +" flights</span>");
 }
 
 function hideNumberOfFlights(a) {
-  console.log(lesson + " hideNumberOfFlights");
   $("#tabs span.tooltip").remove();
 }
 
 function selectFlight(e) {
-  console.log(lesson + " selectFlight");
   e.preventDefault();
   $("#tabs a.selected").removeClass('selected');
   $(e.target).toggleClass('selected');
@@ -63,7 +55,7 @@ jQuery(function($) {
   // Added error div link reload
   $("#error a").click(function (e){
     e.preventDefault();
-    fetch_flights($("#tabs li a.active").attr("href"));
+    showFlights($("#tabs li a.active").attr("href"));
   });
   
   $("#tabs div").delegate('#flights a', 'click', selectFlight);

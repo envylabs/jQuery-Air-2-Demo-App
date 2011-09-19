@@ -2,17 +2,19 @@ jQuery(function($) {
 
   var lesson = "2-5";
 
-  question("Select the flight, show price total");
+  question("Abort ajax request if another one is clicked.");
 
   var fetching_flights = null;
 
-  function fetch_flights(active_div) {
+  function showFlights(active_div) {
+    $("#tabs div").hide();
     if (fetching_flights) {
       fetching_flights.abort();
     }
     fetching_flights = $.ajax('/flights', {  
       data: { date: active_div },
       cache: false, 
+      timeout: 1000, 
       beforeSend: function(result) {
         $('#tabs #loading').show();
       },
@@ -41,10 +43,6 @@ jQuery(function($) {
     showFlights($(e.target).attr("href"));
   }
 
-  function showFlights(active_div) {
-    $("#tabs div").hide();
-    fetch_flights(active_div);
-  }
 
   function showNumberOfFlights(e) {
     var num_flights = $(e.target).data('flights');
@@ -60,31 +58,6 @@ jQuery(function($) {
     e.preventDefault();
     $("#tabs a.selected").removeClass('selected');
     $(e.target).toggleClass('selected');
-    
-    var flight = $(e.target).data('flight');
-    var class = $(e.target).data('class');
-    
-    console.log(lesson + " flight " + flight + " & class = " + class);
-    
-    $('#confirm').hide();
-    
-    $.ajax('/flights/' + flight, {
-      data: { 'class': class },
-      dataType: 'json',
-      success: showTotal
-    });
-    
-    // Also can do
-    // $.getJSON('/flights/' + flight, 
-    //           { 'class': class }, 
-    //           showTotal);
-  }
-  
-  function showTotal(json) {
-    $('#price').text(json.price);
-    $('#fees').text(json.fees);
-    $('#total').text(json.total);
-    $('#confirm').slideDown();
   }
 
   $("#tabs ul li a").bind({
@@ -95,7 +68,7 @@ jQuery(function($) {
 
   $("#tabs #error a").click(function (e){
     e.preventDefault();
-    fetch_flights($("#tabs li a.active").attr("href"));
+    showFlights($("#tabs li a.active").attr("href"));
   });
 
   $("#tabs div").delegate('#flights a', 'click', selectFlight);

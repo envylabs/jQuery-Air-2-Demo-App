@@ -4,8 +4,9 @@ jQuery(function($) {
   question("Loading Flights");
 });
 
-function fetch_flights(active_div) {
-  $.ajax('/flights', {  // Changed path to cause error 
+function showFlights(active_div) {
+  $("#tabs div").hide();
+  $.ajax('/flights', {  
     data: { date: active_div },
     cache: false, 
     beforeSend: function(result) {
@@ -32,11 +33,6 @@ function changeTab(e) {
   $(e.target).addClass("active").unbind("click", changeTab);
   
   showFlights($(e.target).attr("href"));
-}
-
-function showFlights(active_div) {
-  $("#tabs div").hide();
-  fetch_flights(active_div);
 }
 
 function showNumberOfFlights(e) {
@@ -68,7 +64,7 @@ jQuery(function($) {
   
   $("#tabs #error a").click(function (e){
     e.preventDefault();
-    fetch_flights($("#tabs li a.active").attr("href"));
+    showFlights($("#tabs li a.active").attr("href"));
   });
   
   $("#tabs div").delegate('#flights a', 'click', selectFlight);
