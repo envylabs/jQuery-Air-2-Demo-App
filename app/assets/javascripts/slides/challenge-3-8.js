@@ -1,8 +1,7 @@
 jQuery(function($) {
 
-  var lesson = "2-8";
-
-  question("Submit the login form, use post method and load server side javascript.");
+  var lesson = "3-8";
+  question("Stop effect...");
 
   var fetching_flights = null;
 
@@ -43,13 +42,15 @@ jQuery(function($) {
   }
 
   function showNumberOfFlights(e) {
-    var num_flights = $(e.target).data('flights');
-    $(e.target).append("<span class='tooltip'>"+ num_flights 
-    +" flights</span>");
+    var num_flights = $(e.target).data('flights'),
+        tooltip = $("<span class='tooltip'>"+ num_flights +" flights</span>");
+  
+    // Can't run simultaneous effects for fadeIn and slideDown, must be done with animate. See login_succes for queue example.
+    tooltip.css('opacity', '0').appendTo($(e.target)).delay(200).animate({opacity:'1', top: '-29px'}, 250);
   }
 
   function hideNumberOfFlights(a) {
-    $("#tabs span.tooltip").remove();
+    $("#tabs span.tooltip").hide();
   }
 
   function selectFlight(e) {
@@ -74,6 +75,10 @@ jQuery(function($) {
     $('#fees').text(json.fees);
     $('#total').text(json.total);
     $('#confirm').slideDown();
+    $('#confirm').queue(function() {
+      $(this).find("input[type=email]").focus();
+      $(this).dequeue();
+    });
   }
 
   $("#tabs ul li a").bind({
@@ -84,23 +89,32 @@ jQuery(function($) {
   
   function login(e) {
     e.preventDefault();
-    
-    // var name = $('#login #name').val();
-    // var password = $('#login #password').val();
-    // 
-    // $.ajax('/login', {  
-    //   data: { 'name':name, 'password':password },
-    //   ...
-
     var form = $(e.target).serialize();
-    
-    $('#login h4').slideUp();
-    
+    $('#login').slideUp(500, "linear");
     $.ajax('/login', {  
       data: form,
-      dataType: 'script',
-      type: 'post'
+      dataType: 'html',
+      type: 'post',
+      success: login_succes,
+      error: login_failure
     });
+  }
+
+  function login_succes(result) {
+    $('#login').queue(function() {
+      $(this).html(result).slideDown();
+      $('#confirm .confirm-purchase').slideDown(500, 'linear');
+      $("#confirm tr.total td, #confirm tr.total th").css({'background-color': '#2C1F11', 'opacity':'0.5'}).animate({ opacity: '1'});
+      $(this).dequeue();
+    });
+  }
+  
+  function login_failure(result) {
+    $('#login').queue(function() {
+      $('#login_error').html("Cannot login, please try again")
+      $('#login').slideDown();
+      $(this).dequeue();
+    })
   }
 
   $("#tabs #error a").click(function (e){

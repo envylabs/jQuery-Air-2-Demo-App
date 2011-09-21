@@ -2,7 +2,7 @@ jQuery(function($) {
 
   var lesson = "2-8";
 
-  question("Submit the login form, use post method and load server side javascript.");
+  question("Fade the tooltip in when hovered over, and fade out when mouse out.");
 
   var fetching_flights = null;
 
@@ -43,13 +43,18 @@ jQuery(function($) {
   }
 
   function showNumberOfFlights(e) {
+    console.log(lesson + " showNumberOfFlights");
     var num_flights = $(e.target).data('flights');
-    $(e.target).append("<span class='tooltip'>"+ num_flights 
-    +" flights</span>");
+    var tooltip = $("<span class='tooltip'>"+ num_flights +" flights</span>");    
+    // $(e.target).app end(tooltip).hide().fadeIn();
+    toolip.appendTo($(e.target)).hide().fadeIn(100).animate({ marginTop: '4px' });
   }
 
   function hideNumberOfFlights(a) {
-    $("#tabs span.tooltip").remove();
+    // $("#tabs span.tooltip").fadeOut();
+    $("#tabs span.tooltip").fadeOut(100, function() {
+      $(this).remove();
+    });
   }
 
   function selectFlight(e) {

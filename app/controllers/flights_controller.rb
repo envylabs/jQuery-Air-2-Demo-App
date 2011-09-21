@@ -5,7 +5,7 @@ class FlightsController < ApplicationController
   def index
     date = params[:date][1..-1]
     d = Time.parse("#{date} 00:00:00 UTC")
-    sleep(3)
+    # sleep(3)
     @flights = Flight.where(depart: d.beginning_of_day..d.end_of_day)
   end
   
@@ -34,7 +34,17 @@ class FlightsController < ApplicationController
   end
   
   def login
-    sleep(1)
-    @logged_in = true
+    # sleep(1)
+    @logged_in = params[:email].present?
+    respond_to do |format|
+      format.js { render }
+      format.html { 
+        if @logged_in
+          render
+        else
+          head :unprocessable_entity
+        end
+      }
+    end
   end
 end

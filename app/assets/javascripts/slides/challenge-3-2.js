@@ -1,8 +1,8 @@
 jQuery(function($) {
 
-  var lesson = "2-8";
+  var lesson = "3-2";
 
-  question("Submit the login form, use post method and load server side javascript.");
+  question("Use Callback function upon successful slidedown to change background color of triptotal.");
 
   var fetching_flights = null;
 
@@ -94,12 +94,20 @@ jQuery(function($) {
 
     var form = $(e.target).serialize();
     
-    $('#login h4').slideUp();
-    
     $.ajax('/login', {  
       data: form,
-      dataType: 'script',
-      type: 'post'
+      dataType: 'html',
+      type: 'post',
+      success: login_succes
+    });
+  }
+  
+  function login_succes(result) {
+    $('#login').slideUp(function() {
+      $(this).html(result).slideDown();
+      
+      $('#confirm .confirm-purchase').slideDown();
+      $("#confirm tr.total td, #confirm tr.total th").css('background-color', '#2C1F11');
     });
   }
 
