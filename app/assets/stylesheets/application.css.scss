@@ -253,6 +253,7 @@ h4 {
     background: url(/assets/loading.gif) center 75px no-repeat;
     padding: 40px 10px 80px;
     text-align: center;
+    display: none;
   }
   
   // ----- Error ----- //
@@ -260,6 +261,7 @@ h4 {
   #error {
     padding: 40px 10px 40px;
     text-align: center;
+    display: none;
     a {
       color: #b40324;
       text-decoration: underline;

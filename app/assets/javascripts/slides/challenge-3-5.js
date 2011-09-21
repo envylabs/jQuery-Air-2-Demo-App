@@ -1,8 +1,8 @@
 jQuery(function($) {
 
-  var lesson = "2-8";
+  var lesson = "3-5";
 
-  question("Submit the login form, use post method and load server side javascript.");
+  question("Use queue to slideup the login box, then slide it down upon success after it's complete.");
 
   var fetching_flights = null;
 
@@ -43,9 +43,11 @@ jQuery(function($) {
   }
 
   function showNumberOfFlights(e) {
-    var num_flights = $(e.target).data('flights');
-    $(e.target).append("<span class='tooltip'>"+ num_flights 
-    +" flights</span>");
+    var num_flights = $(e.target).data('flights'),
+        tooltip = $("<span class='tooltip'>"+ num_flights +" flights</span>");
+  
+    // Can't run simultaneous effects for fadeIn and slideDown, must be done with animate. See login_succes for queue example.
+    tooltip.css('opacity', '0').appendTo($(e.target)).animate({opacity:'1', top: '-29px'}, 250);
   }
 
   function hideNumberOfFlights(a) {
@@ -84,24 +86,32 @@ jQuery(function($) {
   
   function login(e) {
     e.preventDefault();
-    
-    // var name = $('#login #name').val();
-    // var password = $('#login #password').val();
-    // 
-    // $.ajax('/login', {  
-    //   data: { 'name':name, 'password':password },
-    //   ...
-
     var form = $(e.target).serialize();
-    // alert(form);
-    
-    $('#login h4').slideUp();
-    
+    $('#login').slideUp(500, "linear");
     $.ajax('/login', {  
       data: form,
-      dataType: 'script',
-      type: 'post'
+      dataType: 'html',
+      type: 'post',
+      success: login_succes,
+      error: login_failure
     });
+  }
+
+  function login_succes(result) {
+    $('#login').queue(function() {
+      $(this).html(result).slideDown();
+      $('#confirm .confirm-purchase').slideDown(500, 'linear');
+      $("#confirm tr.total td, #confirm tr.total th").css({'background-color': '#2C1F11', 'opacity':'0.5'}).animate({ opacity: '1'});
+      $(this).dequeue();
+    });
+  }
+  
+  function login_failure(result) {
+    $('#login').queue(function() {
+      $('#login_error').html("Cannot login, please try again")
+      $('#login').slideDown();
+      $(this).dequeue();
+    })
   }
 
   $("#tabs #error a").click(function (e){

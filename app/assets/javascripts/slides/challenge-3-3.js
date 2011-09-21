@@ -1,8 +1,8 @@
 jQuery(function($) {
 
-  var lesson = "2-8";
+  var lesson = "3-3";
 
-  question("Submit the login form, use post method and load server side javascript.");
+  question("Animate color change to highlight price change upon successful login. Also speed this up to make it faster.");
 
   var fetching_flights = null;
 
@@ -93,14 +93,25 @@ jQuery(function($) {
     //   ...
 
     var form = $(e.target).serialize();
-    // alert(form);
-    
-    $('#login h4').slideUp();
     
     $.ajax('/login', {  
       data: form,
-      dataType: 'script',
-      type: 'post'
+      dataType: 'html',
+      type: 'post',
+      success: login_succes
+    });
+  }
+  
+  function login_succes(result) {
+    $('#login').slideUp(function() {
+      $(this).html(result).slideDown();
+      
+      $('#confirm .confirm-purchase').slideDown();
+      // Note on what can be animated from jquery docs
+      // All animated properties should be animated to a single numeric value, except as noted below; most properties that are non-numeric cannot be animated using basic jQuery functionality. (For example, width, height, or left can be animated but background-color cannot be.) Property values are treated as a number of pixels unless otherwise specified. The units em and % can be specified where applicable.
+      // background color cannot be animated, but opacity can be
+      // $("#confirm tr.total td, #confirm tr.total th").css({'background-color': '#2C1F11', 'opacity':'0.5'}).animate({ opacity: '1'});
+      $("#confirm tr.total td, #confirm tr.total th").css({'background-color': '#2C1F11', 'opacity':'0.5'}).animate({ opacity: '1'}, 'fast');
     });
   }
 

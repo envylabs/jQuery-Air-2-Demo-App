@@ -58,20 +58,21 @@ Level 3
 
 Chaining, Timing, Intervals, Effect Queues, Starting/Stoping animation, custom easing methods
 
-1. Make tooltip fadeIn when hover event happens, then Fadeout on MouseLeave
+1. Slide up the login form and slide it down upon completion of the slideup.
 
-Second step ... add configuration to make it faster.
+2. Use Callback function upon successful slidedown to change background color of triptotal.
+Also changing the callback to be format HTML rather than script.
 
-2. Make tooltip fadeIn and then move down.  animate(margin-top)
+3. Animate color change to highlight price change upon successful login. Also speed this up to make it faster.
 
-Also speed this up to make it faster.
+4. Change easing method on the slideUp/slideDown of the login box.
 
-3. Try a different easing with the tooltip FadeIn.
+5. Use queue to slideup the login box, then slide it down upon success after it's complete.
 
-4. Make the Tooltip do both at the same time with queue:false
+6. Now that the tooltip is fast, lets add a very slight delay, so the user has to hover for a second over the tab before it appears.
 
-5. Now that the tooltip is fast, lets add a very slight delay, so the user has to hover for a second over the tab before it appears.
+7. After the total box Fade's In, queue up an event to highlight the login box.
+* Thinking we might be able to just remove this one.
 
-6. After the total box Fade's In, queue up an event to highlight the login box.
-
-7. Use the stop function to stop the tooltip animation on the mouseleave.  
+8. Use the stop function to stop the tooltip animation on the mouseleave. 
+* This one is not doing. Right now mouseleave removes the element altogether, so we'll need to come up with another case for 

@@ -1,8 +1,8 @@
 jQuery(function($) {
 
-  var lesson = "2-8";
+  var lesson = "3-4";
 
-  question("Submit the login form, use post method and load server side javascript.");
+  question("Change easing method on the slideUp/slideDown of the login box.");
 
   var fetching_flights = null;
 
@@ -93,14 +93,27 @@ jQuery(function($) {
     //   ...
 
     var form = $(e.target).serialize();
-    // alert(form);
-    
-    $('#login h4').slideUp();
     
     $.ajax('/login', {  
       data: form,
-      dataType: 'script',
-      type: 'post'
+      dataType: 'html',
+      type: 'post',
+      success: login_succes
+    });
+  }
+  
+  /* 
+    Good site: http://james.padolsey.com/demos/jquery/easing/
+    Note: Those are avaible via an assitional plugin: 
+    http://gsgd.co.uk/sandbox/jquery/easing/
+    The only jquery easing options are 'swing' (default) and 'linear'.
+  */
+  function login_succes(result) {
+    $('#login').slideUp(500, "linear", function() {
+        $(this).html(result).slideDown();
+      
+        $('#confirm .confirm-purchase').slideDown(500, 'linear');
+        $("#confirm tr.total td, #confirm tr.total th").css({'background-color': '#2C1F11', 'opacity':'0.5'}).animate({ opacity: '1'});
     });
   }
 
