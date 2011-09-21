@@ -73,11 +73,7 @@ jQuery(function($) {
     
     // Also show
     
-    // function fetchWeather() {
-    //   $.ajax('http://autocomplete.wunderground.com/aq?query=Orlando,%20Florida&format=JSON&cb=printWeather', {
-    //     dataType: 'jsonp'
-    //   });
-    // }
+
     // 
     // function printWeather(json){
     //   console.log(json);
@@ -110,3 +106,12 @@ jQuery(function($) {
 });
 
 
+function fetchWeather() {
+  $.ajax('http://api.wunderground.com/api/065adfd6c1d0a14b/conditions/q/32789.json', {
+    dataType: 'jsonp',
+    success: function(json) {
+      console.log(json);
+      alert(json.current_observation.temperature_string);
+    }
+  });
+}

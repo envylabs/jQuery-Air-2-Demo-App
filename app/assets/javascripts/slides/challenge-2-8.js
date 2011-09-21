@@ -93,6 +93,7 @@ jQuery(function($) {
     //   ...
 
     var form = $(e.target).serialize();
+    // alert(form);
     
     $('#login h4').slideUp();
     

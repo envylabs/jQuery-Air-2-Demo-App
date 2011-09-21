@@ -2,7 +2,7 @@ jQuery(function($) {
 
   var lesson = "2-5";
 
-  question("Abort ajax request if another one is clicked.");
+  question("Add timeout.");
 
   var fetching_flights = null;
 
@@ -14,7 +14,7 @@ jQuery(function($) {
     fetching_flights = $.ajax('/flights', {  
       data: { date: active_div },
       cache: false, 
-      timeout: 1000, 
+      timeout: 2000, 
       beforeSend: function(result) {
         $('#tabs #loading').show();
       },

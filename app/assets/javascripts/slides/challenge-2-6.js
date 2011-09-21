@@ -1,6 +1,6 @@
 jQuery(function($) {
 
-  var lesson = "2-5";
+  var lesson = "2-6";
 
   question("Select the flight, show price total");
 
@@ -59,8 +59,6 @@ jQuery(function($) {
     
     var flight = $(e.target).data('flight');
     var class = $(e.target).data('class');
-    
-    console.log(lesson + " flight " + flight + " & class = " + class);
     
     $('#confirm').hide();
     
