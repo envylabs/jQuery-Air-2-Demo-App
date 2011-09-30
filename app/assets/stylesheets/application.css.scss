@@ -153,6 +153,10 @@ h4 {
   
   // ----- Date Select ----- //
 
+  span.tooltip {
+    display:none;
+  }
+
   ul {
     @include linear-gradient(#bda98f, #af9c83, #bda98f);
     @extend .group;
@@ -274,6 +278,18 @@ h4 {
 }
 
 
+//-----------------------------------------------------------------------
+//  Flight Filter
+//-----------------------------------------------------------------------
+
+#flight-filter {
+  @include box-shadow(0 0 0 5px #bda98f);
+  @include linear-gradient(#bda98f, #af9c83, #bda98f);
+  border-top: 1px solid #decdb9;
+  border-bottom: 1px solid #decdb9;
+  float: right;
+  margin-right: 100px;
+}
 
 //-----------------------------------------------------------------------
 //  Confirm

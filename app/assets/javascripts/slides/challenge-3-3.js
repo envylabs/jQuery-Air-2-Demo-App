@@ -4,14 +4,14 @@ jQuery(function($) {
 
   question("Animate color change to highlight price change upon successful login. Also speed this up to make it faster.");
 
-  var fetching_flights = null;
+  var fetchingFlights = null;
 
   function showFlights(active_div) {
     $("#tabs div").hide();
-    if (fetching_flights) {
-      fetching_flights.abort();
+    if (fetchingFlights) {
+      fetchingFlights.abort();
     }
-    fetching_flights = $.ajax('/flights', {  
+    fetchingFlights = $.ajax('/flights', {  
       data: { date: active_div },
       cache: false, 
       beforeSend: function(result) {
@@ -19,7 +19,7 @@ jQuery(function($) {
       },
       complete: function(result) {
         $('#tabs #loading').hide();
-        fetching_flights = null;
+        fetchingFlights = null;
       },
       success: function(result) {
         $(active_div).html(result);
@@ -46,6 +46,7 @@ jQuery(function($) {
     var num_flights = $(e.target).data('flights');
     $(e.target).append("<span class='tooltip'>"+ num_flights 
     +" flights</span>");
+    $("#tabs span.tooltip").show();
   }
 
   function hideNumberOfFlights(a) {
@@ -58,12 +59,12 @@ jQuery(function($) {
     $(e.target).toggleClass('selected');
     
     var flight = $(e.target).data('flight');
-    var flight_class = $(e.target).data('class');
+    var flightClass = $(e.target).data('class');
         
     $('#confirm').hide();
     
     $.ajax('/flights/' + flight, {
-      data: { 'class': flight_class },
+      data: { 'class': flightClass },
       dataType: 'json',
       success: showTotal
     });
@@ -84,34 +85,13 @@ jQuery(function($) {
   
   function login(e) {
     e.preventDefault();
-    
-    // var name = $('#login #name').val();
-    // var password = $('#login #password').val();
-    // 
-    // $.ajax('/login', {  
-    //   data: { 'name':name, 'password':password },
-    //   ...
 
     var form = $(e.target).serialize();
     
     $.ajax('/login', {  
-      data: form,
-      dataType: 'html',
-      type: 'post',
-      success: login_succes
-    });
-  }
-  
-  function login_succes(result) {
-    $('#login').slideUp(function() {
-      $(this).html(result).slideDown();
-      
-      $('#confirm .confirm-purchase').slideDown();
-      // Note on what can be animated from jquery docs
-      // All animated properties should be animated to a single numeric value, except as noted below; most properties that are non-numeric cannot be animated using basic jQuery functionality. (For example, width, height, or left can be animated but background-color cannot be.) Property values are treated as a number of pixels unless otherwise specified. The units em and % can be specified where applicable.
-      // background color cannot be animated, but opacity can be
-      // $("#confirm tr.total td, #confirm tr.total th").css({'background-color': '#2C1F11', 'opacity':'0.5'}).animate({ opacity: '1'});
-      $("#confirm tr.total td, #confirm tr.total th").css({'background-color': '#2C1F11', 'opacity':'0.5'}).animate({ opacity: '1'}, 'fast');
+      data: form + "&lesson=" + lesson,
+      dataType: 'script',
+      type: 'post'
     });
   }
 

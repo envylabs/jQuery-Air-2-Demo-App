@@ -1,3 +1,11 @@
+<div id="flight-filter">
+  <strong>Number of Stops</strong><br />
+  <input type="radio" name="stops" value="0" /> 0 Stops<br />
+  <input type="radio" name="stops" value="1" /> 0-1 Stops<br />
+  <input type="radio" name="stops" value="2+" checked /> 0-2+ Stops<br />
+</div>
+
+
 <header>
   <h1>Select a Flight</h1>
 </header>
@@ -5,16 +13,86 @@
 <section id="tabs">
   <ul>
     <% @dates.each do |d| %>
-      <li><a href="#<%= d.strftime("%Y-%m-%d") %>" data-flights="<%= Flight.where(depart: d.beginning_of_day..d.end_of_day).count %>"><%= d.strftime("%b %d") %></a></li>
+      <li><a href="#<%= d.strftime("%Y-%m-%d") %>" data-flights="<%= Flight.where(depart: d.beginning_of_day..d.end_of_day).count %>" data-tooltip="<%= Flight.where(depart: d.beginning_of_day..d.end_of_day).count %> flights"><%= d.strftime("%b %d") %></a></li>
     <% end %>
   </ul>
 
   <div id="tickets"></div>
-  <div id="2012-09-27">Loading Sep 27</div>
-  <div id="2012-09-28">Loading Sep 28</div>
-  <div id="2012-09-29">Loading Sep 29</div>
-  <div id="2012-09-30">Loading Sep 30</div>
-  <div id="2012-10-01">Loading Oct 1</div>
+  <div id="2012-09-27">
+    <table id='flights'>       
+      <thead>                  
+        <tr>                   
+          <th>Depart</th>      
+          <th>Arrive</th>      
+          <th>Flight #</th>    
+          <th>Routing</th>     
+          <th>First Class</th> 
+          <th>Economy</th>     
+        </tr>                  
+      </thead>
+      <tbody />
+    </table>
+  </div>
+  <div id="2012-09-28">
+    <table id='flights'>       
+      <thead>                  
+        <tr>                   
+          <th>Depart</th>      
+          <th>Arrive</th>      
+          <th>Flight #</th>    
+          <th>Routing</th>     
+          <th>First Class</th> 
+          <th>Economy</th>     
+        </tr>                  
+      </thead>
+      <tbody />
+    </table>
+  </div>
+  <div id="2012-09-29">
+    <table id='flights'>       
+      <thead>                  
+        <tr>                   
+          <th>Depart</th>      
+          <th>Arrive</th>      
+          <th>Flight #</th>    
+          <th>Routing</th>     
+          <th>First Class</th> 
+          <th>Economy</th>     
+        </tr>                  
+      </thead>
+      <tbody />
+    </table>
+  </div>
+  <div id="2012-09-30">
+    <table id='flights'>       
+      <thead>                  
+        <tr>                   
+          <th>Depart</th>      
+          <th>Arrive</th>      
+          <th>Flight #</th>    
+          <th>Routing</th>     
+          <th>First Class</th> 
+          <th>Economy</th>     
+        </tr>                  
+      </thead>
+      <tbody />
+    </table>
+  </div>
+  <div id="2012-10-01">
+    <table id='flights'>       
+      <thead>                  
+        <tr>                   
+          <th>Depart</th>      
+          <th>Arrive</th>      
+          <th>Flight #</th>    
+          <th>Routing</th>     
+          <th>First Class</th> 
+          <th>Economy</th>     
+        </tr>                  
+      </thead>
+      <tbody />
+    </table>
+  </div>
   
   <div id="error">
     <h2>Whoops, unable to pull flights.</h2> 
@@ -25,6 +103,8 @@
     <h2>Just a minute while we pull up your flight</h2>
   </div>
 </section>
+
+
 
 <section id="confirm">
   <div class="flight-review">
@@ -67,6 +147,35 @@
   </form>
 </section>
 
+<script id="flightTemplate" type="text/x-jquery-tmpl"> 
+<tr>
+  <td>${depart}</td>
+  <td>${arrive}</td>
+  <td>${flight}</td>
+  <td>${routing}</td>
+  <td><a href='#' data-flight='${flight}' data-class='first_class'>${first_class}</a></td>
+  <td><a href='#' data-flight='${flight}' data-class='economy'>${economy}</a></td>
+</tr>
+</script>
+
+<script id="flightTemplate2" type="text/x-jquery-tmpl"> 
+<tr>
+  <td>${depart}</td>
+  <td>${arrive}</td>
+  <td>${flight}</td>
+  <td>
+    {{if (routing == 0)}}
+      Nonstop
+    {{else (routing == 1)}}
+        1 Stop
+    {{else}}
+        ${routing} Stops
+    {{/if}}
+  </td>
+  <td><a href='#' data-flight='${flight}' data-class='first_class'>${first_class}</a></td>
+  <td><a href='#' data-flight='${flight}' data-class='economy'>${economy}</a></td>
+</tr>
+</script>
 
 <% content_for :inline_javascript do %>
   

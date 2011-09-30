@@ -76,3 +76,8 @@ Also changing the callback to be format HTML rather than script.
 
 8. Use the stop function to stop the tooltip animation on the mouseleave. 
 * This one is not doing. Right now mouseleave removes the element altogether, so we'll need to come up with another case for 
+
+------
+
+Level 4
+

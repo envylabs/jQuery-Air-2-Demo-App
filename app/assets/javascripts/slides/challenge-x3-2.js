@@ -4,14 +4,14 @@ jQuery(function($) {
 
   question("Fade the tooltip in when hovered over, and fade out when mouse out.");
 
-  var fetching_flights = null;
+  var fetchingFlights = null;
 
   function showFlights(active_div) {
     $("#tabs div").hide();
-    if (fetching_flights) {
-      fetching_flights.abort();
+    if (fetchingFlights) {
+      fetchingFlights.abort();
     }
-    fetching_flights = $.ajax('/flights', {  
+    fetchingFlights = $.ajax('/flights', {  
       data: { date: active_div },
       cache: false, 
       beforeSend: function(result) {
@@ -19,7 +19,7 @@ jQuery(function($) {
       },
       complete: function(result) {
         $('#tabs #loading').hide();
-        fetching_flights = null;
+        fetchingFlights = null;
       },
       success: function(result) {
         $(active_div).html(result);
@@ -63,12 +63,12 @@ jQuery(function($) {
     $(e.target).toggleClass('selected');
     
     var flight = $(e.target).data('flight');
-    var flight_class = $(e.target).data('class');
+    var flightClass = $(e.target).data('class');
         
     $('#confirm').hide();
     
     $.ajax('/flights/' + flight, {
-      data: { 'class': flight_class },
+      data: { 'class': flightClass },
       dataType: 'json',
       success: showTotal
     });

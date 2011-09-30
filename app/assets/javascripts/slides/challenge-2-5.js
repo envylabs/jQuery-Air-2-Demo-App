@@ -4,14 +4,14 @@ jQuery(function($) {
 
   question("Add timeout.");
 
-  var fetching_flights = null;
+  var fetchingFlights = null;
 
   function showFlights(active_div) {
     $("#tabs div").hide();
-    if (fetching_flights) {
-      fetching_flights.abort();
+    if (fetchingFlights) {
+      fetchingFlights.abort();
     }
-    fetching_flights = $.ajax('/flights', {  
+    fetchingFlights = $.ajax('/flights', {  
       data: { date: active_div },
       cache: false, 
       timeout: 2000, 
@@ -20,7 +20,7 @@ jQuery(function($) {
       },
       complete: function(result) {
         $('#tabs #loading').hide();
-        fetching_flights = null;
+        fetchingFlights = null;
       },
       success: function(result) {
         $(active_div).html(result);
@@ -48,6 +48,7 @@ jQuery(function($) {
     var num_flights = $(e.target).data('flights');
     $(e.target).append("<span class='tooltip'>"+ num_flights 
     +" flights</span>");
+    $("#tabs span.tooltip").show();
   }
 
   function hideNumberOfFlights(a) {

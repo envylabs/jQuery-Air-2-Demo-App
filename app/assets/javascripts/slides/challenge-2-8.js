@@ -4,14 +4,14 @@ jQuery(function($) {
 
   question("Submit the login form, use post method and load server side javascript.");
 
-  var fetching_flights = null;
+  var fetchingFlights = null;
 
   function showFlights(active_div) {
     $("#tabs div").hide();
-    if (fetching_flights) {
-      fetching_flights.abort();
+    if (fetchingFlights) {
+      fetchingFlights.abort();
     }
-    fetching_flights = $.ajax('/flights', {  
+    fetchingFlights = $.ajax('/flights', {  
       data: { date: active_div },
       cache: false, 
       beforeSend: function(result) {
@@ -19,7 +19,7 @@ jQuery(function($) {
       },
       complete: function(result) {
         $('#tabs #loading').hide();
-        fetching_flights = null;
+        fetchingFlights = null;
       },
       success: function(result) {
         $(active_div).html(result);
@@ -46,6 +46,7 @@ jQuery(function($) {
     var num_flights = $(e.target).data('flights');
     $(e.target).append("<span class='tooltip'>"+ num_flights 
     +" flights</span>");
+    $("#tabs span.tooltip").show();
   }
 
   function hideNumberOfFlights(a) {
@@ -58,12 +59,12 @@ jQuery(function($) {
     $(e.target).toggleClass('selected');
     
     var flight = $(e.target).data('flight');
-    var flight_class = $(e.target).data('class');
+    var flightClass = $(e.target).data('class');
         
     $('#confirm').hide();
     
     $.ajax('/flights/' + flight, {
-      data: { 'class': flight_class },
+      data: { 'class': flightClass },
       dataType: 'json',
       success: showTotal
     });

@@ -6,9 +6,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.tmpl
 
 function question(q) {
   $("#question p").html(q);
 }
-
-

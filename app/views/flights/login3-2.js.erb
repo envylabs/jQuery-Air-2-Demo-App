@@ -1,0 +1,5 @@
+$('#login').fadeOut('fast', function() {
+  $(this).html("<%= escape_javascript(render 'welcome') %>").fadeIn('slow');
+});
+$('#confirm .confirm-purchase').slideDown();
+$("#confirm .total td, #confirm tr.total th").css('background-color', '#2C1F11');

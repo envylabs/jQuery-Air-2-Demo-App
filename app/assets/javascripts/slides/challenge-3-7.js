@@ -2,16 +2,18 @@ jQuery(function($) {
 
   var lesson = "3-7";
 
-  question("After the total box Fade's In, queue up an event to highlight the login box.");
+  question("Fix the flight number tool tips so animation stops on mouse out");
 
-  var fetching_flights = null;
+  // Tabbing and listing flights
+  
+  var fetchingFlights = null;
 
   function showFlights(active_div) {
     $("#tabs div").hide();
-    if (fetching_flights) {
-      fetching_flights.abort();
+    if (fetchingFlights) {
+      fetchingFlights.abort();
     }
-    fetching_flights = $.ajax('/flights', {  
+    fetchingFlights = $.ajax('/flights', {  
       data: { date: active_div },
       cache: false, 
       beforeSend: function(result) {
@@ -19,7 +21,7 @@ jQuery(function($) {
       },
       complete: function(result) {
         $('#tabs #loading').hide();
-        fetching_flights = null;
+        fetchingFlights = null;
       },
       success: function(result) {
         $(active_div).html(result);
@@ -42,30 +44,34 @@ jQuery(function($) {
     showFlights($(e.target).attr("href"));
   }
 
-  function showNumberOfFlights(e) {
-    var num_flights = $(e.target).data('flights'),
-        tooltip = $("<span class='tooltip'>"+ num_flights +" flights</span>");
+  // Tooltip methods
   
-    // Can't run simultaneous effects for fadeIn and slideDown, must be done with animate. See login_succes for queue example.
-    tooltip.css('opacity', '0').appendTo($(e.target)).delay(200).animate({opacity:'1', top: '-29px'}, 250);
+  function showNumberOfFlights(e) {
+    var num_flights = $(e.target).data('flights');    
+    $(e.target).append("<span class='tooltip'>"+ num_flights +" flights</span>");
+    $("#tabs span.tooltip").delay(100).fadeIn();
   }
 
   function hideNumberOfFlights(a) {
-    $("#tabs span.tooltip").hide();
+    $("#tabs span.tooltip").stop().fadeOut(function(){ 
+      $(this).remove(); 
+    });
   }
 
+  // Selecting a flight
+  
   function selectFlight(e) {
     e.preventDefault();
     $("#tabs a.selected").removeClass('selected');
     $(e.target).toggleClass('selected');
     
     var flight = $(e.target).data('flight');
-    var flight_class = $(e.target).data('class');
+    var flightClass = $(e.target).data('class');
         
     $('#confirm').hide();
     
     $.ajax('/flights/' + flight, {
-      data: { 'class': flight_class },
+      data: { 'class': flightClass },
       dataType: 'json',
       success: showTotal
     });
@@ -81,42 +87,30 @@ jQuery(function($) {
       $(this).dequeue();
     });
   }
-
+  
+  // login and confirm button
+  
+  function login(e) {
+    e.preventDefault();
+    var form = $(e.target).serialize();
+    
+    $('#login').fadeOut();
+    
+    $.ajax('/login', {  
+      data: form + "&lesson=3-5",
+      dataType: 'script',
+      type: 'post'
+    });
+  }
+  
+  
+  // On load events to bind shit
+    
   $("#tabs ul li a").bind({
     click: changeTab,
     mouseenter: showNumberOfFlights,
     mouseleave: hideNumberOfFlights
   });
-  
-  function login(e) {
-    e.preventDefault();
-    var form = $(e.target).serialize();
-    $('#login').slideUp(500, "linear");
-    $.ajax('/login', {  
-      data: form,
-      dataType: 'html',
-      type: 'post',
-      success: login_succes,
-      error: login_failure
-    });
-  }
-
-  function login_succes(result) {
-    $('#login').queue(function() {
-      $(this).html(result).slideDown();
-      $('#confirm .confirm-purchase').slideDown(500, 'linear');
-      $("#confirm tr.total td, #confirm tr.total th").css({'background-color': '#2C1F11', 'opacity':'0.5'}).animate({ opacity: '1'});
-      $(this).dequeue();
-    });
-  }
-  
-  function login_failure(result) {
-    $('#login').queue(function() {
-      $('#login_error').html("Cannot login, please try again")
-      $('#login').slideDown();
-      $(this).dequeue();
-    })
-  }
 
   $("#tabs #error a").click(function (e){
     e.preventDefault();

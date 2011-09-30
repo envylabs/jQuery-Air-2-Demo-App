@@ -1,17 +1,20 @@
 jQuery(function($) {
 
-  var lesson = "3-6";
+  var lesson = "4-4";
 
-  question("Lets made the tool tip more UI friendly.. animate it, add a very slight delay, so the user has to hover for a second over the tab before it appears.");
-
+  question("Create a utility function");
+  
+  // Tabbing and listing flights
+  
   var fetchingFlights = null;
+  var currentFlights = null;
 
   function showFlights(active_div) {
     $("#tabs div").hide();
     if (fetchingFlights) {
       fetchingFlights.abort();
     }
-    fetchingFlights = $.ajax('/flights', {  
+    fetchingFlights = $.ajax('/flights.json', {  
       data: { date: active_div },
       cache: false, 
       beforeSend: function(result) {
@@ -21,10 +24,27 @@ jQuery(function($) {
         $('#tabs #loading').hide();
         fetchingFlights = null;
       },
-      success: function(result) {
-        $(active_div).html(result);
+      success: function(flights) {
+        currentFlights = flights;
+        $(active_div + ' tbody td').remove();
+        
+        var stops = $('#flight-filter input[name=stops]:checked').val();
+        var filtered_flights = [];
+
+        $.each(currentFlights, function(index, flight) {
+          if (stops == '2+') {
+            filtered_flights.push(flight);
+          } else if (stops == '1' && flight.routing <= 1) {
+            filtered_flights.push(flight);
+          } else if (flight.routing == 0) {
+            filtered_flights.push(flight);
+          }
+        });
+        
+        $( "#flightTemplate2" ).tmpl( filtered_flights ).appendTo(active_div + ' tbody');
+        
         $('#tabs #error').hide();
-        $(active_div).show(); 
+        $(active_div).show();
       },
       error: function(result) {
         if (result.statusText != "abort") { 
@@ -32,6 +52,28 @@ jQuery(function($) {
         }
       }
     });
+  }
+  
+  $('#flight-filter input[name=stops]').change(filter_by_flights);
+  
+  // Filter by number of flights
+  function filter_by_flights(e) {
+    
+    var stops = $(e.target).val();
+    var filtered_flights = [];
+
+    $.each(currentFlights, function(index, flight) {
+      if (stops == '2+') {
+        filtered_flights.push(flight);
+      } else if (stops == '1' && flight.routing <= 1) {
+        filtered_flights.push(flight);
+      } else if (flight.routing == 0) {
+        filtered_flights.push(flight);
+      }
+    });
+       
+    $('#tabs div:visible tbody td').remove();
+    $( "#flightTemplate2" ).tmpl( filtered_flights ).appendTo('#tabs div:visible tbody');
   }
 
   function changeTab(e) {
@@ -42,6 +84,8 @@ jQuery(function($) {
     showFlights($(e.target).attr("href"));
   }
 
+  // Tooltip methods
+  
   function showNumberOfFlights(e) {
     var num_flights = $(e.target).data('flights');    
     $(e.target).append("<span class='tooltip'>"+ num_flights +" flights</span>");
@@ -49,11 +93,13 @@ jQuery(function($) {
   }
 
   function hideNumberOfFlights(a) {
-    $("#tabs span.tooltip").fadeOut(function(){ 
+    $("#tabs span.tooltip").stop().fadeOut(function(){ 
       $(this).remove(); 
     });
   }
 
+  // Selecting a flight
+  
   function selectFlight(e) {
     e.preventDefault();
     $("#tabs a.selected").removeClass('selected');
@@ -76,13 +122,13 @@ jQuery(function($) {
     $('#fees').text(json.fees);
     $('#total').text(json.total);
     $('#confirm').slideDown();
+    $('#confirm').queue(function() {
+      $(this).find("input[type=email]").focus();
+      $(this).dequeue();
+    });
   }
-
-  $("#tabs ul li a").bind({
-    click: changeTab,
-    mouseenter: showNumberOfFlights,
-    mouseleave: hideNumberOfFlights
-  });
+  
+  // login and confirm button
   
   function login(e) {
     e.preventDefault();
@@ -96,6 +142,15 @@ jQuery(function($) {
       type: 'post'
     });
   }
+  
+  
+  // On load events to bind shit
+    
+  $("#tabs ul li a").bind({
+    click: changeTab,
+    mouseenter: showNumberOfFlights,
+    mouseleave: hideNumberOfFlights
+  });
 
   $("#tabs #error a").click(function (e){
     e.preventDefault();

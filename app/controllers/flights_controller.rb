@@ -1,5 +1,6 @@
 class FlightsController < ApplicationController
   include ActionView::Helpers::NumberHelper
+  include ActionView::Helpers::TextHelper
   
   layout false
   def index
@@ -7,6 +8,12 @@ class FlightsController < ApplicationController
     d = Time.parse("#{date} 00:00:00 UTC")
     # sleep(3)
     @flights = Flight.where(depart: d.beginning_of_day..d.end_of_day)
+    respond_to do |format|
+      format.html 
+      format.json { 
+        render json: @flights.collect { |f| { depart: f.depart_time, arrive: f.arrive_time, flight: f.flight, routing: f.stops, first_class: number_to_currency(f.first_class_price, precision: 0), economy: number_to_currency(f.economy_price, precision: 0)} } 
+      }
+    end
   end
   
   def fail
@@ -34,17 +41,19 @@ class FlightsController < ApplicationController
   end
   
   def login
-    # sleep(1)
-    @logged_in = params[:email].present?
-    respond_to do |format|
-      format.js { render }
-      format.html { 
-        if @logged_in
-          render
-        else
-          head :unprocessable_entity
-        end
-      }
+    # sleep(2)
+    @logged_in = true
+    if params[:lesson]
+      render :action => "login#{params[:lesson]}"
+    end
+  end
+  
+  helper_method :stop_friendly
+  def stop_friendly(stops)
+    if stops == 0
+      "Nonstop"
+    else
+      pluralize(stops, "stop")
     end
   end
 end

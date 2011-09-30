@@ -1,9 +1,12 @@
 jQuery(function($) {
 
-  var lesson = "3-6";
+  var lesson = "4-1";
 
-  question("Lets made the tool tip more UI friendly.. animate it, add a very slight delay, so the user has to hover for a second over the tab before it appears.");
+  question("Change the showFlights to use JSON, and use each / map to populate the table");
+  // show JSON we're sending over
 
+  // Tabbing and listing flights
+  
   var fetchingFlights = null;
 
   function showFlights(active_div) {
@@ -11,7 +14,7 @@ jQuery(function($) {
     if (fetchingFlights) {
       fetchingFlights.abort();
     }
-    fetchingFlights = $.ajax('/flights', {  
+    fetchingFlights = $.ajax('/flights.json', {  
       data: { date: active_div },
       cache: false, 
       beforeSend: function(result) {
@@ -21,10 +24,43 @@ jQuery(function($) {
         $('#tabs #loading').hide();
         fetchingFlights = null;
       },
-      success: function(result) {
-        $(active_div).html(result);
+      success: function(flights) {
+        // $(active_div).html(result);
+        // $('#tabs #error').hide();
+        // $(active_div).show(); 
+        $(active_div + ' tbody td').remove();
+        
+        // var rows = "";
+        // $.each(flights, function(index, flight) {
+        //   rows += "\
+        //     <tr>\
+        //       <td>" + flight.depart + "</td>\
+        //       <td>" + flight.arrive + "</td>\
+        //       <td>" + flight.flight + "</td>\
+        //       <td>" + flight.routing + "</td>\
+        //       <td><a href='#' data-flight='" + flight.flight + "' data-class='first_class'>" + flight.first_class + "</a></td>\
+        //       <td><a href='#' data-flight='" + flight.flight + "' data-class='economy'>" + flight.economy + "</a></td>\
+        //     </tr>";
+        // });
+        // $(active_div + ' tbody').html(rows);
+        
+        // Or we can use a map.
+        var flight_rows = $.map(flights, function(flight) {
+            return "<tr>\
+              <td>" + flight.depart + "</td>\
+              <td>" + flight.arrive + "</td>\
+              <td>" + flight.flight + "</td>\
+              <td>" + flight.routing + "</td>\
+              <td><a href='#' data-flight='" + flight.flight + "' data-class='first_class'>" + flight.first_class + "</a></td>\
+              <td><a href='#' data-flight='" + flight.flight + "' data-class='economy'>" + flight.economy + "</a></td>\
+            </tr>";
+        });
+        $(active_div + ' tbody').html(flight_rows.join(''));
+        
+        
+        
         $('#tabs #error').hide();
-        $(active_div).show(); 
+        $(active_div).show();
       },
       error: function(result) {
         if (result.statusText != "abort") { 
@@ -42,6 +78,8 @@ jQuery(function($) {
     showFlights($(e.target).attr("href"));
   }
 
+  // Tooltip methods
+  
   function showNumberOfFlights(e) {
     var num_flights = $(e.target).data('flights');    
     $(e.target).append("<span class='tooltip'>"+ num_flights +" flights</span>");
@@ -49,11 +87,13 @@ jQuery(function($) {
   }
 
   function hideNumberOfFlights(a) {
-    $("#tabs span.tooltip").fadeOut(function(){ 
+    $("#tabs span.tooltip").stop().fadeOut(function(){ 
       $(this).remove(); 
     });
   }
 
+  // Selecting a flight
+  
   function selectFlight(e) {
     e.preventDefault();
     $("#tabs a.selected").removeClass('selected');
@@ -76,13 +116,13 @@ jQuery(function($) {
     $('#fees').text(json.fees);
     $('#total').text(json.total);
     $('#confirm').slideDown();
+    $('#confirm').queue(function() {
+      $(this).find("input[type=email]").focus();
+      $(this).dequeue();
+    });
   }
-
-  $("#tabs ul li a").bind({
-    click: changeTab,
-    mouseenter: showNumberOfFlights,
-    mouseleave: hideNumberOfFlights
-  });
+  
+  // login and confirm button
   
   function login(e) {
     e.preventDefault();
@@ -96,6 +136,15 @@ jQuery(function($) {
       type: 'post'
     });
   }
+  
+  
+  // On load events to bind shit
+    
+  $("#tabs ul li a").bind({
+    click: changeTab,
+    mouseenter: showNumberOfFlights,
+    mouseleave: hideNumberOfFlights
+  });
 
   $("#tabs #error a").click(function (e){
     e.preventDefault();

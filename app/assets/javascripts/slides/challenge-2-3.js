@@ -40,6 +40,7 @@ function showNumberOfFlights(e) {
   var num_flights = $(e.target).data('flights');
   $(e.target).append("<span class='tooltip'>"+ num_flights 
                       +" flights</span>");
+    $("#tabs span.tooltip").show();
 }
 
 function hideNumberOfFlights(a) {

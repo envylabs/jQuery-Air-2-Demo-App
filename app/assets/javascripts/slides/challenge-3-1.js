@@ -4,14 +4,14 @@ jQuery(function($) {
 
   question("Slide up the login form and slide it down upon completion of the slideup.");
 
-  var fetching_flights = null;
+  var fetchingFlights = null;
 
   function showFlights(active_div) {
     $("#tabs div").hide();
-    if (fetching_flights) {
-      fetching_flights.abort();
+    if (fetchingFlights) {
+      fetchingFlights.abort();
     }
-    fetching_flights = $.ajax('/flights', {  
+    fetchingFlights = $.ajax('/flights', {  
       data: { date: active_div },
       cache: false, 
       beforeSend: function(result) {
@@ -19,7 +19,7 @@ jQuery(function($) {
       },
       complete: function(result) {
         $('#tabs #loading').hide();
-        fetching_flights = null;
+        fetchingFlights = null;
       },
       success: function(result) {
         $(active_div).html(result);
@@ -46,6 +46,7 @@ jQuery(function($) {
     var num_flights = $(e.target).data('flights');
     $(e.target).append("<span class='tooltip'>"+ num_flights 
     +" flights</span>");
+    $("#tabs span.tooltip").show();
   }
 
   function hideNumberOfFlights(a) {
@@ -58,12 +59,12 @@ jQuery(function($) {
     $(e.target).toggleClass('selected');
     
     var flight = $(e.target).data('flight');
-    var flight_class = $(e.target).data('class');
+    var flightClass = $(e.target).data('class');
         
     $('#confirm').hide();
     
     $.ajax('/flights/' + flight, {
-      data: { 'class': flight_class },
+      data: { 'class': flightClass },
       dataType: 'json',
       success: showTotal
     });
@@ -85,31 +86,15 @@ jQuery(function($) {
   function login(e) {
     e.preventDefault();
     
-    // var name = $('#login #name').val();
-    // var password = $('#login #password').val();
-    // 
-    // $.ajax('/login', {  
-    //   data: { 'name':name, 'password':password },
-    //   ...
-
     var form = $(e.target).serialize();
     
     $.ajax('/login', {  
-      data: form,
-      dataType: 'html',
-      type: 'post',
-      success: login_succes
+      data: form + "&lesson=" + lesson,
+      dataType: 'script',
+      type: 'post'
     });
   }
   
-  function login_succes(result) {
-    // $('#login').slideUp().html(result).slideDown();
-    $('#login').slideUp('fast').html(result).slideDown('fast');
-
-    $('#confirm .confirm-purchase').slideDown();
-    $("#confirm tr.total td, #confirm tr.total th").css('background-color', '#2C1F11');
-  }
-
   $("#tabs #error a").click(function (e){
     e.preventDefault();
     showFlights($("#tabs li a.active").attr("href"));

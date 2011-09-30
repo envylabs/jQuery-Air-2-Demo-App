@@ -1,9 +1,11 @@
 jQuery(function($) {
 
-  var lesson = "2-8";
+  var lesson = "4-3";
 
-  question("Fade the tooltip in when hovered over, and fade out when mouse out.");
-
+  question("Use add conditionals so the number of stops will say Nonstop, 1 stop, or # Stops");
+  
+  // Tabbing and listing flights
+  
   var fetchingFlights = null;
 
   function showFlights(active_div) {
@@ -11,7 +13,7 @@ jQuery(function($) {
     if (fetchingFlights) {
       fetchingFlights.abort();
     }
-    fetchingFlights = $.ajax('/flights', {  
+    fetchingFlights = $.ajax('/flights.json', {  
       data: { date: active_div },
       cache: false, 
       beforeSend: function(result) {
@@ -21,10 +23,16 @@ jQuery(function($) {
         $('#tabs #loading').hide();
         fetchingFlights = null;
       },
-      success: function(result) {
-        $(active_div).html(result);
+      success: function(flights) {
+        // $(active_div).html(result);
+        // $('#tabs #error').hide();
+        // $(active_div).show(); 
+        $(active_div + ' tbody td').remove();
+        
+        $( "#flightTemplate2" ).tmpl( flights ).appendTo(active_div + ' tbody');
+        
         $('#tabs #error').hide();
-        $(active_div).show(); 
+        $(active_div).show();
       },
       error: function(result) {
         if (result.statusText != "abort") { 
@@ -42,21 +50,22 @@ jQuery(function($) {
     showFlights($(e.target).attr("href"));
   }
 
+  // Tooltip methods
+  
   function showNumberOfFlights(e) {
-    console.log(lesson + " showNumberOfFlights");
-    var num_flights = $(e.target).data('flights');
-    var tooltip = $("<span class='tooltip'>"+ num_flights +" flights</span>");    
-    // $(e.target).append(tooltip).hide().fadeIn();
-    $(e.target).append(tooltip).hide().fadeIn(100);
+    var num_flights = $(e.target).data('flights');    
+    $(e.target).append("<span class='tooltip'>"+ num_flights +" flights</span>");
+    $("#tabs span.tooltip").delay(100).fadeIn();
   }
 
   function hideNumberOfFlights(a) {
-    // $("#tabs span.tooltip").fadeOut();
-    $("#tabs span.tooltip").fadeOut(100, function() {
-      $(this).remove();
+    $("#tabs span.tooltip").stop().fadeOut(function(){ 
+      $(this).remove(); 
     });
   }
 
+  // Selecting a flight
+  
   function selectFlight(e) {
     e.preventDefault();
     $("#tabs a.selected").removeClass('selected');
@@ -79,34 +88,35 @@ jQuery(function($) {
     $('#fees').text(json.fees);
     $('#total').text(json.total);
     $('#confirm').slideDown();
+    $('#confirm').queue(function() {
+      $(this).find("input[type=email]").focus();
+      $(this).dequeue();
+    });
   }
-
+  
+  // login and confirm button
+  
+  function login(e) {
+    e.preventDefault();
+    var form = $(e.target).serialize();
+    
+    $('#login').fadeOut();
+    
+    $.ajax('/login', {  
+      data: form + "&lesson=3-5",
+      dataType: 'script',
+      type: 'post'
+    });
+  }
+  
+  
+  // On load events to bind shit
+    
   $("#tabs ul li a").bind({
     click: changeTab,
     mouseenter: showNumberOfFlights,
     mouseleave: hideNumberOfFlights
   });
-  
-  function login(e) {
-    e.preventDefault();
-    
-    // var name = $('#login #name').val();
-    // var password = $('#login #password').val();
-    // 
-    // $.ajax('/login', {  
-    //   data: { 'name':name, 'password':password },
-    //   ...
-
-    var form = $(e.target).serialize();
-    
-    $('#login h4').slideUp();
-    
-    $.ajax('/login', {  
-      data: form,
-      dataType: 'script',
-      type: 'post'
-    });
-  }
 
   $("#tabs #error a").click(function (e){
     e.preventDefault();

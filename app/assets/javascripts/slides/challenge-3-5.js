@@ -4,14 +4,14 @@ jQuery(function($) {
 
   question("Use queue to slideup the login box, then slide it down upon success after it's complete.");
 
-  var fetching_flights = null;
+  var fetchingFlights = null;
 
   function showFlights(active_div) {
     $("#tabs div").hide();
-    if (fetching_flights) {
-      fetching_flights.abort();
+    if (fetchingFlights) {
+      fetchingFlights.abort();
     }
-    fetching_flights = $.ajax('/flights', {  
+    fetchingFlights = $.ajax('/flights', {  
       data: { date: active_div },
       cache: false, 
       beforeSend: function(result) {
@@ -19,7 +19,7 @@ jQuery(function($) {
       },
       complete: function(result) {
         $('#tabs #loading').hide();
-        fetching_flights = null;
+        fetchingFlights = null;
       },
       success: function(result) {
         $(active_div).html(result);
@@ -43,11 +43,9 @@ jQuery(function($) {
   }
 
   function showNumberOfFlights(e) {
-    var num_flights = $(e.target).data('flights'),
-        tooltip = $("<span class='tooltip'>"+ num_flights +" flights</span>");
-  
-    // Can't run simultaneous effects for fadeIn and slideDown, must be done with animate. See login_succes for queue example.
-    tooltip.css('opacity', '0').appendTo($(e.target)).animate({opacity:'1', top: '-29px'}, 250);
+    var num_flights = $(e.target).data('flights');    
+    $(e.target).append("<span class='tooltip'>"+ num_flights +" flights</span>");
+    $("#tabs span.tooltip").show();
   }
 
   function hideNumberOfFlights(a) {
@@ -60,12 +58,12 @@ jQuery(function($) {
     $(e.target).toggleClass('selected');
     
     var flight = $(e.target).data('flight');
-    var flight_class = $(e.target).data('class');
+    var flightClass = $(e.target).data('class');
         
     $('#confirm').hide();
     
     $.ajax('/flights/' + flight, {
-      data: { 'class': flight_class },
+      data: { 'class': flightClass },
       dataType: 'json',
       success: showTotal
     });
@@ -87,32 +85,16 @@ jQuery(function($) {
   function login(e) {
     e.preventDefault();
     var form = $(e.target).serialize();
-    $('#login').slideUp(500, "linear");
+    
+    $('#login').fadeOut();
+    
     $.ajax('/login', {  
-      data: form,
-      dataType: 'html',
-      type: 'post',
-      success: login_succes,
-      error: login_failure
+      data: form + "&lesson=" + lesson,
+      dataType: 'script',
+      type: 'post'
     });
   }
 
-  function login_succes(result) {
-    $('#login').queue(function() {
-      $(this).html(result).slideDown();
-      $('#confirm .confirm-purchase').slideDown(500, 'linear');
-      $("#confirm tr.total td, #confirm tr.total th").css({'background-color': '#2C1F11', 'opacity':'0.5'}).animate({ opacity: '1'});
-      $(this).dequeue();
-    });
-  }
-  
-  function login_failure(result) {
-    $('#login').queue(function() {
-      $('#login_error').html("Cannot login, please try again")
-      $('#login').slideDown();
-      $(this).dequeue();
-    })
-  }
 
   $("#tabs #error a").click(function (e){
     e.preventDefault();

@@ -4,14 +4,14 @@ jQuery(function($) {
 
   question("Change easing method on the slideUp/slideDown of the login box.");
 
-  var fetching_flights = null;
+  var fetchingFlights = null;
 
   function showFlights(active_div) {
     $("#tabs div").hide();
-    if (fetching_flights) {
-      fetching_flights.abort();
+    if (fetchingFlights) {
+      fetchingFlights.abort();
     }
-    fetching_flights = $.ajax('/flights', {  
+    fetchingFlights = $.ajax('/flights', {  
       data: { date: active_div },
       cache: false, 
       beforeSend: function(result) {
@@ -19,7 +19,7 @@ jQuery(function($) {
       },
       complete: function(result) {
         $('#tabs #loading').hide();
-        fetching_flights = null;
+        fetchingFlights = null;
       },
       success: function(result) {
         $(active_div).html(result);
@@ -46,6 +46,7 @@ jQuery(function($) {
     var num_flights = $(e.target).data('flights');
     $(e.target).append("<span class='tooltip'>"+ num_flights 
     +" flights</span>");
+    $("#tabs span.tooltip").show();
   }
 
   function hideNumberOfFlights(a) {
@@ -58,12 +59,12 @@ jQuery(function($) {
     $(e.target).toggleClass('selected');
     
     var flight = $(e.target).data('flight');
-    var flight_class = $(e.target).data('class');
+    var flightClass = $(e.target).data('class');
         
     $('#confirm').hide();
     
     $.ajax('/flights/' + flight, {
-      data: { 'class': flight_class },
+      data: { 'class': flightClass },
       dataType: 'json',
       success: showTotal
     });
@@ -84,21 +85,13 @@ jQuery(function($) {
   
   function login(e) {
     e.preventDefault();
-    
-    // var name = $('#login #name').val();
-    // var password = $('#login #password').val();
-    // 
-    // $.ajax('/login', {  
-    //   data: { 'name':name, 'password':password },
-    //   ...
 
     var form = $(e.target).serialize();
     
     $.ajax('/login', {  
-      data: form,
-      dataType: 'html',
-      type: 'post',
-      success: login_succes
+      data: form + "&lesson=" + lesson,
+      dataType: 'script',
+      type: 'post'
     });
   }
   
@@ -108,14 +101,6 @@ jQuery(function($) {
     http://gsgd.co.uk/sandbox/jquery/easing/
     The only jquery easing options are 'swing' (default) and 'linear'.
   */
-  function login_succes(result) {
-    $('#login').slideUp(500, "linear", function() {
-        $(this).html(result).slideDown();
-      
-        $('#confirm .confirm-purchase').slideDown(500, 'linear');
-        $("#confirm tr.total td, #confirm tr.total th").css({'background-color': '#2C1F11', 'opacity':'0.5'}).animate({ opacity: '1'});
-    });
-  }
 
   $("#tabs #error a").click(function (e){
     e.preventDefault();

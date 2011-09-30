@@ -7,11 +7,4 @@ module ApplicationHelper
     end
   end
 
-  def stop_friendly(stops)
-    if stops == 0
-      "Nonstop"
-    else
-      pluralize(stops, "stop")
-    end
-  end
 end
