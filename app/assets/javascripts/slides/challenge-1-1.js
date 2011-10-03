@@ -10,7 +10,7 @@ function changeTab(e) {
   console.log(lesson + " changeTab");
   e.preventDefault();
   $("#tabs li a.active").removeClass("active");
-  $(e.target).addClass("active");
+  $(this).addClass("active");
 }
 
 function showNumberOfFlights(a) {

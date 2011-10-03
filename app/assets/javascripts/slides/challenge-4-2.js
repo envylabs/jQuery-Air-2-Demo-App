@@ -32,7 +32,8 @@ jQuery(function($) {
         // $(active_div).show(); 
         $(active_div + ' tbody td').remove();
         
-        $( "#flightTemplate" ).tmpl( flights ).appendTo(active_div + ' tbody');
+        $( "#flightTemplate" ).tmpl( flights )
+                              .appendTo(active_div + ' tbody');
         
         $('#tabs #error').hide();
         $(active_div).show();

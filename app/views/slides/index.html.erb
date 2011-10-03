@@ -1,10 +1,11 @@
+<% if params[:l] == "4" && (params[:c] == "4" || params[:c] == "41") %>
 <div id="flight-filter">
   <strong>Number of Stops</strong><br />
   <input type="radio" name="stops" value="0" /> 0 Stops<br />
   <input type="radio" name="stops" value="1" /> 0-1 Stops<br />
   <input type="radio" name="stops" value="2+" checked /> 0-2+ Stops<br />
 </div>
-
+<% end %>
 
 <header>
   <h1>Select a Flight</h1>

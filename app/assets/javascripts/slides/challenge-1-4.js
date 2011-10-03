@@ -20,9 +20,9 @@ function changeTab(e) {
   console.log(lesson + " changeTab");
   e.preventDefault();
   $("#tabs li a.active").removeClass("active").click(changeTab);
-  $(e.target).addClass("active").unbind("click", changeTab);
+  $(this).addClass("active").unbind("click", changeTab);
   
-  showFlights($(e.target).attr("href"));
+  showFlights($(this).attr("href"));
 }
 
 function showFlights(active_div) {
@@ -33,8 +33,8 @@ function showFlights(active_div) {
 
 function showNumberOfFlights(e) {
   console.log(lesson + " showNumberOfFlights");
-  var num_flights = $(e.target).data('flights');
-  $(e.target).append("<span class='tooltip'>"+ num_flights 
+  var num_flights = $(this).data('flights');
+  $(this).append("<span class='tooltip'>"+ num_flights 
                       +" flights</span>");
     $("#tabs span.tooltip").show();
 }
@@ -55,7 +55,7 @@ jQuery(function($) {
 });
 
 // function changeTab(e) {
-//   var a = e.target;
+//   var a = this;
 //   console.log(lesson + " changeTab");
 //   $("#tabs div").hide();
 //   $("#tabs li a.active").removeClass("active").click(changeTab);

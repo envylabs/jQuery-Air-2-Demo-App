@@ -25,9 +25,6 @@ jQuery(function($) {
         fetchingFlights = null;
       },
       success: function(flights) {
-        // $(active_div).html(result);
-        // $('#tabs #error').hide();
-        // $(active_div).show(); 
         $(active_div + ' tbody td').remove();
         
         // var rows = "";
@@ -46,14 +43,18 @@ jQuery(function($) {
         
         // Or we can use a map.
         var flight_rows = $.map(flights, function(flight) {
-            return "<tr>\
-              <td>" + flight.depart + "</td>\
-              <td>" + flight.arrive + "</td>\
-              <td>" + flight.flight + "</td>\
-              <td>" + flight.routing + "</td>\
-              <td><a href='#' data-flight='" + flight.flight + "' data-class='first_class'>" + flight.first_class + "</a></td>\
-              <td><a href='#' data-flight='" + flight.flight + "' data-class='economy'>" + flight.economy + "</a></td>\
-            </tr>";
+            return "<tr>" +
+              "<td>" + flight.depart + "</td>" +
+              "<td>" + flight.arrive + "</td>" +
+              "<td>" + flight.flight + "</td>" +
+              "<td>" + flight.routing + "</td>" +
+              "<td><a href='#' data-flight='" + flight.flight + 
+                "' data-class='first_class'>" + flight.first_class +
+                "</a></td>" +
+             "<td><a href='#' data-flight='" + flight.flight + 
+               "' data-class='economy'>" + flight.economy + 
+               "</a></td>" +
+             "</tr>";
         });
         $(active_div + ' tbody').html(flight_rows.join(''));
         

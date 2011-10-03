@@ -10,19 +10,19 @@ function changeTab(e) {
   console.log(lesson + " changeTab");
   e.preventDefault();
   $("#tabs li a.active").removeClass("active");
-  $(e.target).addClass("active");
+  $(this).addClass("active");
   
-  var active_div = $(e.target).attr("href");
+  var active_div = $(this).attr("href");
   $("#tabs div").hide();
   $(active_div).show();
 }
 
 function showNumberOfFlights(e) {
   console.log(lesson + " showNumberOfFlights");
-  var num_flights = $(e.target).data('flights');
-  $(e.target).append("<span class='tooltip'>"+ num_flights 
+  var num_flights = $(this).data('flights');
+  $(this).append("<span class='tooltip'>"+ num_flights 
                       +" flights</span>");
-    $("#tabs span.tooltip").show();
+  $("#tabs span.tooltip").show();
 }
 
 function hideNumberOfFlights(a) {

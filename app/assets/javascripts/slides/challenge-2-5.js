@@ -38,15 +38,15 @@ jQuery(function($) {
   function changeTab(e) {
     e.preventDefault();
     $("#tabs li a.active").removeClass("active").click(changeTab);
-    $(e.target).addClass("active").unbind("click", changeTab);
+    $(this).addClass("active").unbind("click", changeTab);
 
-    showFlights($(e.target).attr("href"));
+    showFlights($(this).attr("href"));
   }
 
 
   function showNumberOfFlights(e) {
-    var num_flights = $(e.target).data('flights');
-    $(e.target).append("<span class='tooltip'>"+ num_flights 
+    var num_flights = $(this).data('flights');
+    $(this).append("<span class='tooltip'>"+ num_flights 
     +" flights</span>");
     $("#tabs span.tooltip").show();
   }
@@ -58,7 +58,7 @@ jQuery(function($) {
   function selectFlight(e) {
     e.preventDefault();
     $("#tabs a.selected").removeClass('selected');
-    $(e.target).toggleClass('selected');
+    $(this).toggleClass('selected');
   }
 
   $("#tabs ul li a").bind({

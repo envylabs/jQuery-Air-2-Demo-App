@@ -30,7 +30,7 @@ jQuery(function($) {
         
         var stops = $('#flight-filter input[name=stops]:checked').val();
         var filtered_flights = [];
-
+        
         $.each(currentFlights, function(index, flight) {
           if (stops == '2+') {
             filtered_flights.push(flight);
@@ -42,7 +42,7 @@ jQuery(function($) {
         });
         
         $( "#flightTemplate2" ).tmpl( filtered_flights ).appendTo(active_div + ' tbody');
-        
+
         $('#tabs #error').hide();
         $(active_div).show();
       },

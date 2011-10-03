@@ -10,13 +10,13 @@ function changeTab(e) {
   console.log(lesson + " changeTab");
   e.preventDefault();
   $("#tabs li a.active").removeClass("active");
-  $(e.target).addClass("active");
+  $(this).addClass("active");
 }
 
 function showNumberOfFlights(e) {
   console.log(lesson + " showNumberOfFlights");
   var num_flights = $(e.target).data('flights');
-  $(e.target).append("<span class='tooltip'>"+ num_flights 
+  $(this).append("<span class='tooltip'>"+ num_flights 
                       +" flights</span>");
 }
 

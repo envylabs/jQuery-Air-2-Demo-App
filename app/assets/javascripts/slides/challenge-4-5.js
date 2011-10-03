@@ -32,7 +32,7 @@ jQuery(function($) {
         $( "#flightTemplate2" ).tmpl( flights ).appendTo(active_div + ' tbody');
         
         $('#tabs #error').hide();
-        $(active_div).show();
+        $(active_div).show().callOut({'duration': 1000});
       },
       error: function(result) {
         if (result.statusText != "abort") { 
@@ -64,11 +64,26 @@ jQuery(function($) {
   //   });
   // }
   
+  // $.fn.callOut = function() {
+  //   this.css({ opacity:0.5 }).animate({ opacity:1 }, 'fast');
+  // };
+  // 
+  // $.fn.callOut = function(options) {
+  //   
+  //   var defaults = {
+  //     duration: 'fast'
+  //   }
+  //   var options = $.extend(defaults, options);
+  //   
+  //   this.css({ opacity:0.5 }).animate({ opacity:1 }, options.duration);
+  // };
+
   $.fn.addToolTip = function() {
     return this.bind({
       mouseenter: function(e) {
         var tip = $(e.target).data('tooltip');  
-        $("<span class='tooltip'>" + tip + "</span>").appendTo(e.target).delay(100).fadeIn();
+        $("<span class='tooltip'>" + tip + "</span>").appendTo(e.target)
+        .delay(100).fadeIn();
       },
       mouseleave: function(e) {
         $(e.target).find('span.tooltip').stop().fadeOut(function(){ 

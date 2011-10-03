@@ -26,15 +26,15 @@ jQuery(function($) {
       $("#tabs ul li a").addToolTip();
 
       $("#tabs ul li a").bind({
-        click: selectFlights.changeTab
+        click: this.changeTab
       });
 
       $("#tabs #error a").click(function (e){
         e.preventDefault();
-        selectFlights.showFlights($("#tabs li a.active").attr("href"));
+        this.showFlights($("#tabs li a.active").attr("href"));
       });
 
-      $("#tabs div").delegate('#flights a', 'click', selectFlights.selectFlight);
+      $("#tabs div").delegate('#flights a', 'click', this.selectFlight);
       $("#tabs ul li:eq(2) a").click();
 
       $('#confirm #login form').submit(confirmFlight.login);
