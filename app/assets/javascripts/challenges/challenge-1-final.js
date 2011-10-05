@@ -7,7 +7,7 @@ function confirmReserveSeat(e) {
   console.log(lesson + " confirmReserveSeat");
   e.stopPropagation();
   if (confirm('Reserve this seat?')) {
-    $(e.target).attr('data-reserved', 'true').addClass("reserved");
+    $(this).attr('data-reserved', 'true').addClass("reserved");
     $("#reservations").append("<li>Row 1, Seat 4. <a href='#' class='remove'>remove</a></li>");
   }
 }
@@ -32,7 +32,7 @@ function displayPrice(e) {
 }
 
 function hidePrice(e) {
-  if(!isSeatReserved(e.target)) {
+  if(!isSeatReserved(this)) {
     $(this).html("");
   }
 }

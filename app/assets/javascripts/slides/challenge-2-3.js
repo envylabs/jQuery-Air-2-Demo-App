@@ -4,10 +4,10 @@ jQuery(function($) {
   question("Loading Flights");
 });
 
-function showFlights(active_div) {
+function showFlights(activeDiv) {
   $("#tabs div").hide();
   $.ajax('/flights', {  
-    data: { date: active_div },
+    data: { date: activeDiv },
     cache: false, 
     beforeSend: function(result) {
       $('#tabs #loading').show();
@@ -16,9 +16,9 @@ function showFlights(active_div) {
       $('#tabs #loading').hide();
     },
     success: function(result) {
-      $(active_div).html(result);
+      $(activeDiv).html(result);
       $('#tabs #error').hide();
-      $(active_div).show(); 
+      $(activeDiv).show(); 
     },
     error: function(result) {
       $('#tabs #error').show();

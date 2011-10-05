@@ -15,7 +15,7 @@ function changeTab(e) {
 
 function showNumberOfFlights(e) {
   console.log(lesson + " showNumberOfFlights");
-  var num_flights = $(e.target).data('flights');
+  var num_flights = $(this).data('flights');
   $(this).append("<span class='tooltip'>"+ num_flights 
                       +" flights</span>");
 }

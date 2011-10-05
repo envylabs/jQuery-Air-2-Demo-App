@@ -11,14 +11,14 @@ function confirmReserveSeat(e) {
   console.log("1-3 confirmReserveSeat");
   e.stopPropagation();
   if (confirm('Reserve this seat?')) {
-    $(e.target).attr('data-reserved', 'true').addClass('reserved');
+    $(this).attr('data-reserved', 'true').addClass('reserved');
   }
 }
 
 function checkForAlreadyReserved(e) {
   console.log("1-3 checkForAlreadyReserved");
   // <answer> 
-  if(isSeatReserved(e.target)) {
+  if(isSeatReserved(this)) {
     e.stopImmediatePropagation();
     alert('Already Reserved!');
   }

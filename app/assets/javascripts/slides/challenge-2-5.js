@@ -6,13 +6,13 @@ jQuery(function($) {
 
   var fetchingFlights = null;
 
-  function showFlights(active_div) {
+  function showFlights(activeDiv) {
     $("#tabs div").hide();
     if (fetchingFlights) {
       fetchingFlights.abort();
     }
     fetchingFlights = $.ajax('/flights', {  
-      data: { date: active_div },
+      data: { date: activeDiv },
       cache: false, 
       timeout: 2000, 
       beforeSend: function(result) {
@@ -23,9 +23,9 @@ jQuery(function($) {
         fetchingFlights = null;
       },
       success: function(result) {
-        $(active_div).html(result);
+        $(activeDiv).html(result);
         $('#tabs #error').hide();
-        $(active_div).show(); 
+        $(activeDiv).show(); 
       },
       error: function(result) {
         if (result.statusText != "abort") { 

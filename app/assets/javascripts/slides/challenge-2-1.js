@@ -4,23 +4,23 @@ jQuery(function($) {
   question("Load data when clicking on a tab via ajax.");
 });
 
-function showFlights(active_div) {
+function showFlights(activeDiv) {
   $("#tabs div").hide();
   $.ajax('/flights', {
-    data: { date: active_div },
+    data: { date: activeDiv },
     cache: false, // Added this
     success: function(result) {
-      $(active_div).html(result);
-      $(active_div).show(); // Moved this from show_flights Fucntion
+      $(activeDiv).html(result);
+      $(activeDiv).show(); // Moved this from show_flights Fucntion
     }
   });
   
   // Alternately
   $.get("/flights", 
-    { date: active_div }, 
+    { date: activeDiv }, 
     function(result) {
-      $(active_div).html(result);
-      $(active_div).show();
+      $(activeDiv).html(result);
+      $(activeDiv).show();
    });
 }
 

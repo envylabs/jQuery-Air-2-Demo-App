@@ -9,13 +9,13 @@ jQuery(function($) {
   var fetchingFlights = null;
   var currentFlights = null;
 
-  function showFlights(active_div) {
+  function showFlights(activeDiv) {
     $("#tabs div").hide();
     if (fetchingFlights) {
       fetchingFlights.abort();
     }
     fetchingFlights = $.ajax('/flights.json', {  
-      data: { date: active_div },
+      data: { date: activeDiv },
       cache: false, 
       beforeSend: function(result) {
         $('#tabs #loading').show();
@@ -26,7 +26,7 @@ jQuery(function($) {
       },
       success: function(flights) {
         currentFlights = flights;
-        $(active_div + ' tbody td').remove();
+        $(activeDiv + ' tbody td').remove();
         
         var stops = $('#flight-filter input[name=stops]:checked').val();
         var filtered_flights = [];
@@ -41,10 +41,10 @@ jQuery(function($) {
           }
         });
         
-        $( "#flightTemplate2" ).tmpl( filtered_flights ).appendTo(active_div + ' tbody');
+        $( "#flightTemplate2" ).tmpl( filtered_flights ).appendTo(activeDiv + ' tbody');
 
         $('#tabs #error').hide();
-        $(active_div).show();
+        $(activeDiv).show();
       },
       error: function(result) {
         if (result.statusText != "abort") { 
@@ -59,7 +59,7 @@ jQuery(function($) {
   // Filter by number of flights
   function filter_by_flights(e) {
     
-    var stops = $(e.target).val();
+    var stops = $(this).val();
     var filtered_flights = [];
 
     $.each(currentFlights, function(index, flight) {
@@ -79,16 +79,16 @@ jQuery(function($) {
   function changeTab(e) {
     e.preventDefault();
     $("#tabs li a.active").removeClass("active").click(changeTab);
-    $(e.target).addClass("active").unbind("click", changeTab);
+    $(this).addClass("active").unbind("click", changeTab);
 
-    showFlights($(e.target).attr("href"));
+    showFlights($(this).attr("href"));
   }
 
   // Tooltip methods
   
   function showNumberOfFlights(e) {
-    var num_flights = $(e.target).data('flights');    
-    $(e.target).append("<span class='tooltip'>"+ num_flights +" flights</span>");
+    var num_flights = $(this).data('flights');    
+    $(this).append("<span class='tooltip'>"+ num_flights +" flights</span>");
     $("#tabs span.tooltip").delay(100).fadeIn();
   }
 
@@ -103,10 +103,10 @@ jQuery(function($) {
   function selectFlight(e) {
     e.preventDefault();
     $("#tabs a.selected").removeClass('selected');
-    $(e.target).toggleClass('selected');
+    $(this).toggleClass('selected');
     
-    var flight = $(e.target).data('flight');
-    var flightClass = $(e.target).data('class');
+    var flight = $(this).data('flight');
+    var flightClass = $(this).data('class');
         
     $('#confirm').hide();
     
@@ -132,7 +132,7 @@ jQuery(function($) {
   
   function login(e) {
     e.preventDefault();
-    var form = $(e.target).serialize();
+    var form = $(this).serialize();
     
     $('#login').fadeOut();
     

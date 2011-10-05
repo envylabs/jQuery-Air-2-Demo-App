@@ -1,3 +1,7 @@
+(function( $ ){
+  
+})( jQuery );
+
 jQuery(function($) {
 
   var lesson = "3-7";
@@ -8,13 +12,13 @@ jQuery(function($) {
   
   var fetchingFlights = null;
 
-  function showFlights(active_div) {
+  function showFlights(activeDiv) {
     $("#tabs div").hide();
     if (fetchingFlights) {
       fetchingFlights.abort();
     }
     fetchingFlights = $.ajax('/flights', {  
-      data: { date: active_div },
+      data: { date: activeDiv },
       cache: false, 
       beforeSend: function(result) {
         $('#tabs #loading').show();
@@ -24,9 +28,9 @@ jQuery(function($) {
         fetchingFlights = null;
       },
       success: function(result) {
-        $(active_div).html(result);
+        $(activeDiv).html(result);
         $('#tabs #error').hide();
-        $(active_div).show(); 
+        $(activeDiv).show(); 
       },
       error: function(result) {
         if (result.statusText != "abort") { 
@@ -39,16 +43,16 @@ jQuery(function($) {
   function changeTab(e) {
     e.preventDefault();
     $("#tabs li a.active").removeClass("active").click(changeTab);
-    $(e.target).addClass("active").unbind("click", changeTab);
+    $(this).addClass("active").unbind("click", changeTab);
 
-    showFlights($(e.target).attr("href"));
+    showFlights($(this).attr("href"));
   }
 
   // Tooltip methods
   
   function showNumberOfFlights(e) {
-    var num_flights = $(e.target).data('flights');    
-    $(e.target).append("<span class='tooltip'>"+ num_flights +" flights</span>");
+    var num_flights = $(this).data('flights');    
+    $(this).append("<span class='tooltip'>"+ num_flights +" flights</span>");
     $("#tabs span.tooltip").delay(100).fadeIn();
   }
 
@@ -63,10 +67,10 @@ jQuery(function($) {
   function selectFlight(e) {
     e.preventDefault();
     $("#tabs a.selected").removeClass('selected');
-    $(e.target).toggleClass('selected');
+    $(this).toggleClass('selected');
     
-    var flight = $(e.target).data('flight');
-    var flightClass = $(e.target).data('class');
+    var flight = $(this).data('flight');
+    var flightClass = $(this).data('class');
         
     $('#confirm').hide();
     
@@ -92,7 +96,7 @@ jQuery(function($) {
   
   function login(e) {
     e.preventDefault();
-    var form = $(e.target).serialize();
+    var form = $(this).serialize();
     
     $('#login').fadeOut();
     

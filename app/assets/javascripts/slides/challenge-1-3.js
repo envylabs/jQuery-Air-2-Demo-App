@@ -12,9 +12,9 @@ function changeTab(e) {
   $("#tabs li a.active").removeClass("active");
   $(this).addClass("active");
   
-  var active_div = $(this).attr("href");
+  var activeDiv = $(this).attr("href");
   $("#tabs div").hide();
-  $(active_div).show();
+  $(activeDiv).show();
 }
 
 function showNumberOfFlights(e) {

@@ -14,7 +14,7 @@ function confirmReserveSeat(e) {
   e.stopPropagation();
   // </answer>
   if (confirm('Reserve this seat?')) {
-    $(e.target).data('reserved', 'true').addClass('reserved');
+    $(this).data('reserved', 'true').addClass('reserved');
   }
 }
 jQuery(function($) {

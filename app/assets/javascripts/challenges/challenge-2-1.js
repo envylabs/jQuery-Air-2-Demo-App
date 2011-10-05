@@ -29,7 +29,7 @@ function displayPrice(e) {
 }
 
 function hidePrice(e) {
-  if(!isSeatReserved(e.target)) {
+  if(!isSeatReserved(this)) {
     $(this).html("");
   }
 }
@@ -58,7 +58,7 @@ jQuery(function($) {
       $.ajax('/reservations', {
         type: 'POST',
         success: function() {
-          reserveSeat(e.target)
+          reserveSeat(this)
         }
       });
     }

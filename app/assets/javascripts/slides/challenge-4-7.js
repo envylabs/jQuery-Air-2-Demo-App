@@ -7,11 +7,11 @@ jQuery(function($) {
   $.fn.addToolTip = function() {
     return this.bind({
       mouseenter: function(e) {
-        var tip = $(e.target).data('tooltip');  
-        $("<span class='tooltip'>" + tip + "</span>").appendTo(e.target).delay(100).fadeIn();
+        var tip = $(this).data('tooltip');  
+        $("<span class='tooltip'>" + tip + "</span>").appendTo(this).delay(100).fadeIn();
       },
       mouseleave: function(e) {
-        $(e.target).find('span.tooltip').stop().fadeOut(function(){ 
+        $(this).find('span.tooltip').stop().fadeOut(function(){ 
           $(this).remove(); 
         });
       }
@@ -32,8 +32,8 @@ jQuery(function($) {
         'selectTab': function(e) {
           e.preventDefault();
           $("#tabs li a.active").removeClass("active").click(selectFlights.changeTab);
-          $(e.target).addClass("active").unbind("click", selectFlights.changeTab);
-          selectFlights.showFlights($(e.target).attr("href"));
+          $(this).addClass("active").unbind("click", selectFlights.changeTab);
+          selectFlights.showFlights($(this).attr("href"));
         }
       });
 
@@ -44,7 +44,7 @@ jQuery(function($) {
         }
       });
       
-      $("#tabs ul li a").click(function(e) { $(e.target).trigger('selectTab') });
+      $("#tabs ul li a").click(function(e) { $(this).trigger('selectTab') });
       
       // $("#tabs ul li a").bind({
       //     click: selectFlights.changeTab
@@ -63,13 +63,13 @@ jQuery(function($) {
     
     // Tabbing and listing flights
     
-    showFlights : function(active_div) {
+    showFlights : function(activeDiv) {
       $("#tabs div").hide();
       if (selectFlights.fetchingFlights) {
         selectFlights.fetchingFlights.abort();
       }
       selectFlights.fetchingFlights = $.ajax('/flights.json', {  
-        data: { date: active_div },
+        data: { date: activeDiv },
         cache: false, 
         beforeSend: function(result) {
           $('#tabs #loading').show();
@@ -79,10 +79,10 @@ jQuery(function($) {
           selectFlights.fetchingFlights = null;
         },
         success: function(flights) {
-          $(active_div + ' tbody td').remove();
-          $( "#flightTemplate2" ).tmpl( flights ).appendTo(active_div + ' tbody');
+          $(activeDiv + ' tbody td').remove();
+          $( "#flightTemplate2" ).tmpl( flights ).appendTo(activeDiv + ' tbody');
           $('#tabs #error').hide();
-          $(active_div).show();
+          $(activeDiv).show();
         },
         error: function(result) {
           if (result.statusText != "abort") { 
@@ -95,18 +95,18 @@ jQuery(function($) {
     // changeTab : function(e) {
     //   e.preventDefault();
     //   $("#tabs li a.active").removeClass("active").click(selectFlights.changeTab);
-    //   $(e.target).addClass("active").unbind("click", selectFlights.changeTab);
+    //   $(this).addClass("active").unbind("click", selectFlights.changeTab);
     // 
-    //   selectFlights.showFlights($(e.target).attr("href"));
+    //   selectFlights.showFlights($(this).attr("href"));
     // },
     
     selectFlight : function(e) {
       e.preventDefault();
       $("#tabs a.selected").removeClass('selected');
-      $(e.target).toggleClass('selected');
+      $(this).toggleClass('selected');
 
-      var flight = $(e.target).data('flight');
-      var flightClass = $(e.target).data('class');
+      var flight = $(this).data('flight');
+      var flightClass = $(this).data('class');
       
       // Would be the second half, in the new component... confirmFlight fetchFlightInfo
       confirmFlight.init(flight, flightClass);
@@ -140,7 +140,7 @@ jQuery(function($) {
     // login and confirm button
     login : function(e) {
       e.preventDefault();
-      var form = $(e.target).serialize();
+      var form = $(this).serialize();
 
       $('#login').fadeOut();
 

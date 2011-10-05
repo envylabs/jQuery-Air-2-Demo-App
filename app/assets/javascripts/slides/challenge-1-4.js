@@ -7,11 +7,11 @@ jQuery(function($) {
 });
 
 
-function fetch_flights(active_div) {
+function fetch_flights(activeDiv) {
   $.ajax('/flights', {
-    data: { date: active_div },
+    data: { date: activeDiv },
     success: function(result) {
-      $(active_div).html(result);
+      $(activeDiv).html(result);
     }
   });
 }
@@ -25,10 +25,10 @@ function changeTab(e) {
   showFlights($(this).attr("href"));
 }
 
-function showFlights(active_div) {
+function showFlights(activeDiv) {
   $("#tabs div").hide();
-  $(active_div).show();
-  fetch_flights(active_div);
+  $(activeDiv).show();
+  fetch_flights(activeDiv);
 }
 
 function showNumberOfFlights(e) {
@@ -60,8 +60,8 @@ jQuery(function($) {
 //   $("#tabs div").hide();
 //   $("#tabs li a.active").removeClass("active").click(changeTab);
 //   $(a).addClass("active");
-//   var active_div = $(a).attr("href");
-//   $(active_div).show();
+//   var activeDiv = $(a).attr("href");
+//   $(activeDiv).show();
 //   
 //   // Also mention that you can unbind evertyhing with unbind('click')
 //   // If you unbind('click.thing')

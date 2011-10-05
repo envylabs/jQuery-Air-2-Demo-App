@@ -4,15 +4,15 @@ jQuery(function($) {
   question("Failure on server");
 });
 
-function showFlights(active_div) {
+function showFlights(activeDiv) {
   $("#tabs div").hide();
   $.ajax('/flighx', {  // Changed path to cause error 
-    data: { date: active_div },
+    data: { date: activeDiv },
     cache: false, 
     success: function(result) {
-      $(active_div).html(result);
+      $(activeDiv).html(result);
       $('#error').hide(); // hide error
-      $(active_div).show(); 
+      $(activeDiv).show(); 
     },
     error: function(result) { // added callback
       $('#error').show(); 
