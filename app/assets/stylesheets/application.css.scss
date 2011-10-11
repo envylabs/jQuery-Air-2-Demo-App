@@ -466,19 +466,110 @@ h4 {
 //  Seats
 //-----------------------------------------------------------------------
 
-#seats { width:640px; float:left; }
-
-// each seat
-#seats ul {  }
-#seats li { list-style:none; margin-bottom:4px; }
-#seats ul li ul li { width:30px; height:40px; border:2px solid #ccc; margin-right:4px; float:left; background-color:orange; }
-
-#seats ul li ul li.aisle { background-color: yellow; width: 50px; }
-#seats ul li ul li.premium { width:49px; background-color:cyan;}
-#seats ul li ul li.reserved { border:2px solid red; }
-#seats ul li span { display:none; }
-
-#seats > ul > li { clear:both; }
-
-#sidebar { width:320px; float:left; }
-#sidebar aside { border: 1px solid #ccc; }
+.seats-header {
+  width: 600px;
+}
+#seats {
+  @include border-radius(0 0 10px 10px);
+  @include linear-gradient(#e8e2d4, #e8e2d4, #f5f3ed);
+  @extend .group;
+  margin: 0 auto 20px;
+  padding: 7px 10px 6px;
+  width: 600px;
+  p {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+  
+  // ----- Seating Chart ----- //
+  
+  .seating-chart {
+    float: left;
+    margin-right: 20px;
+    overflow: hidden;
+    h3 {
+      color: #b50324;
+      font: bold 1.6em $header;
+      margin-bottom: 10px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
+  ol {
+    .row {
+      margin: 0 0 4px;
+    }
+    ol {
+      @extend .group;
+      li {
+        float: left;
+        margin-right: 4px;
+        &:nth-child(3) {
+          margin-right: 38px;
+        }
+      }
+      a {
+        @include border-radius(3px);
+        background: #ded0bd;
+        border: 2px solid #ded0bd;
+        border-top: 0;
+        color: #c2b19b;
+        cursor: default;
+        display: block;
+        font: bold 1.4em/34px $bold;
+        height: 34px;
+        text-align: center;
+        width: 34px;
+        &.available {
+          @include box-shadow(0 1px 3px rgba(0,0,0,0.3));
+          background: #83a38e;
+          border: 2px solid #749580;
+          border-top: 0;
+          color: #e0f1e6;
+          cursor: pointer;
+          text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+          &:hover,
+          &:focus {
+            background: #749580;
+            border-color: #63826e;
+            color: #fff;
+          }
+        }
+        &.selected {
+          @include box-shadow(0 1px 3px rgba(0,0,0,0.1));
+          background: #8cf5f5;
+          border: 2px solid #77ebeb;
+          border-top: 0;
+          color: #14a0a0;
+          cursor: pointer;
+          text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+      }
+    }
+    &.first-class {
+      margin-bottom: 10px;
+      ol {
+        li {
+          &:nth-child(2) {
+            margin-right: 38px;
+          }
+          &:nth-child(3) {
+            margin-right: 4px;
+          }
+        }
+        a {
+          height: 45px;
+          line-height: 45px;
+          width: 55px;
+        }
+      }
+    }
+  }
+  
+  // ----- Sidebar ----- //
+  
+  aside {
+    float: left;
+  }
+}

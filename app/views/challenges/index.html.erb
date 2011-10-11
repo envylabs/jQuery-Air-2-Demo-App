@@ -1,95 +1,100 @@
-<header>
+<header class="seats-header">
   <h1>Reserve a Seat</h1>
 </header>
-
-<section id="question">
-  <h3>Question</h3>
-  <p></p>
-</section>
   
-
 <section id="seats">
-  <ul id="first_class">
-    <li>
-      <span>Row 1</span>
-      <ul class="row premium" data-row="1">
-        <li><a href="#" data-seat="a">Seat A</a></li>
-        <li class="premium b"></li>
-        <li class="aisle"></li>
-        <li class="premium c"></li>
-        <li class="premium d"></li>
-      </ul>
-    </li>
-    <li id="row_2">
-      <span>Row 2</span>
-      <ul class="row">
-        <li class="premium a"></li>
-        <li class="premium b"></li>
-        <li class="aisle"></li>
-        <li class="premium c"></li>
-        <li class="premium d"></li>
-      </ul>
-    </li>
-  </ul>
-  <ul id="economy_class">
-    <li id="row_3">
-      <span>Row 3</span>
-      <ul class="row">
-        <li class="a"></li>
-        <li class="b"></li>
-        <li class="c"></li>
-        <li class="aisle"></li>
-        <li class="d"></li>
-        <li class="e"></li>
-        <li class="f"></li>
-      </ul>
-    </li>
-    <li id="row_4">
-      <span>Row 4</span>
-      <ul class="row">
-        <li class="a"></li>
-        <li class="b"></li>
-        <li class="c"></li>
-        <li class="aisle"></li>
-        <li class="d"></li>
-        <li class="e"></li>
-        <li class="f"></li>
-      </ul>
-    </li>
-    <li id="row_5">
-      <span>Row 5</span>
-      <ul class="row">
-        <li class="a"></li>
-        <li class="b"></li>
-        <li class="c"></li>
-        <li class="aisle"></li>
-        <li class="d"></li>
-        <li class="e"></li>
-        <li class="f"></li>
-      </ul>
-    </li>
-    <li id="row_6">
-      <span>Row 6</span>
-      <ul class="row">
-        <li class="a"></li>
-        <li class="b"></li>
-        <li class="c"></li>
-        <li class="aisle"></li>
-        <li class="d"></li>
-        <li class="e"></li>
-        <li class="f"></li>
-      </ul>
-    </li>
-  </ul>
-</section>
-
-
-<section id="sidebar">
+  <h2>Question</h2>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+  
+  <div class="seating-chart">
+    <h3>- First Class -</h3>
+    <ol class="first-class">
+      <li class="row" data-row="1">
+        <ol>
+          <li><a class="available" data-seat="a" href="#">A</a></li>
+          <li><a data-seat="b" href="#">B</a></li>
+          <li><a data-seat="c" href="#">C</a></li>
+          <li><a data-seat="d" href="#">D</a></li>
+        </ol>
+      </li>
+      <li class="row" data-row="2">
+        <ol>
+          <li><a class="available" data-seat="a" href="#">A</a></li>
+          <li><a class="available" data-seat="b" href="#">B</a></li>
+          <li><a class="available" data-seat="c" href="#">C</a></li>
+          <li><a data-seat="d" href="#">D</a></li>
+        </ol>
+      </li>
+    </ol>
+    
+    <h3>- Economy Class -</h3>
+    <ol class="economy-class">
+      <li class="row" data-row="3">
+        <ol>
+          <li><a class="available" data-seat="a" href="#">A</a></li>
+          <li><a data-seat="b" href="#">B</a></li>
+          <li><a data-seat="c" href="#">C</a></li>
+          <li><a class="available" data-seat="d" href="#">D</a></li>
+          <li><a class="available" data-seat="c" href="#">E</a></li>
+          <li><a class="available" data-seat="d" href="#">F</a></li>
+        </ol>
+      </li>
+      <li class="row" data-row="4">
+        <ol>
+          <li><a data-seat="a" href="#">A</a></li>
+          <li><a data-seat="b" href="#">B</a></li>
+          <li><a data-seat="c" href="#">C</a></li>
+          <li><a class="available" data-seat="d" href="#">D</a></li>
+          <li><a class="available" data-seat="c" href="#">E</a></li>
+          <li><a class="available" data-seat="d" href="#">F</a></li>
+        </ol>
+      </li>
+      <li class="row" data-row="5">
+        <ol>
+          <li><a class="available" data-seat="a" href="#">A</a></li>
+          <li><a class="available" data-seat="b" href="#">B</a></li>
+          <li><a data-seat="c" href="#">C</a></li>
+          <li><a data-seat="d" href="#">D</a></li>
+          <li><a data-seat="c" href="#">E</a></li>
+          <li><a data-seat="d" href="#">F</a></li>
+        </ol>
+      </li>
+      <li class="row" data-row="6">
+        <ol>
+          <li><a class="available" data-seat="a" href="#">A</a></li>
+          <li><a data-seat="b" href="#">B</a></li>
+          <li><a data-seat="c" href="#">C</a></li>
+          <li><a data-seat="d" href="#">D</a></li>
+          <li><a data-seat="c" href="#">E</a></li>
+          <li><a data-seat="d" href="#">F</a></li>
+        </ol>
+      </li>
+      <li class="row" data-row="7">
+        <ol>
+          <li><a class="available" data-seat="a" href="#">A</a></li>
+          <li><a class="available" data-seat="b" href="#">B</a></li>
+          <li><a class="selected" data-seat="c" href="#">C</a></li>
+          <li><a data-seat="d" href="#">D</a></li>
+          <li><a data-seat="c" href="#">E</a></li>
+          <li><a class="available" data-seat="d" href="#">F</a></li>
+        </ol>
+      </li>
+      <li class="row" data-row="8">
+        <ol>
+          <li><a data-seat="a" href="#">A</a></li>
+          <li><a data-seat="b" href="#">B</a></li>
+          <li><a class="available" data-seat="c" href="#">C</a></li>
+          <li><a class="available" data-seat="d" href="#">D</a></li>
+          <li><a data-seat="c" href="#">E</a></li>
+          <li><a data-seat="d" href="#">F</a></li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+  
   <aside>
-    <h2>About this seat</h2>
-  </aside>
-  <aside>
+    <h2>About This Seat</h2>
+    
     <h2>Your Reservations</h2>
-    <ul id="reservations"></ul>
   </aside>
 </section>
