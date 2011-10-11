@@ -296,7 +296,7 @@ h4 {
 //-----------------------------------------------------------------------
 
 #confirm {
-  @activeDivhadow(0 0 0 5px #bda98f);
+  @include box-shadow(0 0 0 5px #bda98f);
   @include linear-gradient(#bda98f, #af9c83, #bda98f);
   border-top: 1px solid #decdb9;
   border-bottom: 1px solid #decdb9;
