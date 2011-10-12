@@ -514,7 +514,7 @@ h4 {
         background: #ded0bd;
         border: 2px solid #ded0bd;
         border-top: 0;
-        color: #c2b19b;
+        color: #ded0bd;
         cursor: default;
         display: block;
         font: bold 1.4em/34px $bold;
@@ -537,7 +537,7 @@ h4 {
           }
         }
         &.selected {
-          @include box-shadow(0 1px 3px rgba(0,0,0,0.1));
+          @include box-shadow(0 1px 3px #8cf5f5);
           background: #8cf5f5;
           border: 2px solid #77ebeb;
           border-top: 0;
