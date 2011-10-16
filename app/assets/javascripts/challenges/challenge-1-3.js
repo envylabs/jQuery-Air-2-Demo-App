@@ -1,31 +1,5 @@
 jQuery(function($) {
-  question("If a seat is already reserved, show an alert to the user and prevent the seat from being reserved.");
-});
-
-function isSeatReserved(seat) {
-  console.log("1-3 isSeatReserved");
-  return $(seat).attr('data-reserved') == 'true';
-}
-
-function confirmReserveSeat(e) {
-  console.log("1-3 confirmReserveSeat");
-  e.stopPropagation();
-  if (confirm('Reserve this seat?')) {
-    $(this).attr('data-reserved', 'true').addClass('reserved');
-  }
-}
-
-function checkForAlreadyReserved(e) {
-  console.log("1-3 checkForAlreadyReserved");
-  // <answer> 
-  if(isSeatReserved(this)) {
-    e.stopImmediatePropagation();
-    alert('Already Reserved!');
-  }
-  // </answer>
-}
-
-jQuery(function($) {
-  $('.row li:not(.aisle)').bind('click', checkForAlreadyReserved);
-  $('.row li:not(.aisle)').bind('click', confirmReserveSeat);  
+  question("Get the html value of the 4th seat in the 2nd row of economy. You'll want to use eq(#). Tip: Don't forget the first row starts at 0.");
+  
+  alert($('ol.economy-class li.row:eq(1) li:eq(3) a').text());
 });
