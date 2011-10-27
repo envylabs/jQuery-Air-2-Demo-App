@@ -4,7 +4,6 @@ jQuery(function($) {
   question("When a tab is clicked, show the related flights and highlight the tab using bind({}).");
 
   function changeTab(e) {
-    console.log(lesson + " changeTab");
     e.preventDefault();
     $("#tabs li a.active").removeClass("active");
     $(this).addClass("active");
