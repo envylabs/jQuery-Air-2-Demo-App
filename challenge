@@ -1,0 +1,53 @@
+Level 2
+
+1. Write the fetchFirstClassConfirm method to retrieve the price of the flight, calling 'first_class/' + flight + "/first_class, and sending in { 'class': 'firstClass' }, and then move the $('confirmation').show() into the success method of the ajax call.
+
+2. Add cache false, a timeout of 7000ms, and write an error callback which simply prints "Unable to pull seat price, please select another seat" to the confirmation div, and then shows the div.
+
+3. Notice the "view earlier flight" and "view later flight" buttons, and the events below.  Fill out the viewAlternateFlight method, which should do an Ajax call to 'flights' + flight, and sends in {'next': next}.  On success it should replace the seatLayout, and reset the selectedSeat variable.
+
+4. To make "view earlier/later flights" buttons work, have them use delegate to call the viewAlternateFlight function.
+
+5. When someone clicks the "view later/earlier flight" button twice, add an abort.  You'll want to set the fetchingFlight variable equal to the ajax request, set the variable to null on complete, and then check when the viewAlternateFlight function is called if the ajax request is in progress (and if so, abort).
+
+6. When a seat is selected we better make sure that it's actually still available, and reserve it for the user.  Finish the selectSeat function to use AJAX, changing the data type to json, and writing the on success method.  The AJAX will return JSON (see the sample return output below).  In the success method you'll want to set the confirmation number.
+
+{ 'confirmation' : '3F4DSQ' }
+
+note: May want to show ajax call itself.. so all they have to do is parse the result. Also may want to show them the failure callback.
+
+7. Finish the method below to which will fetch statistics against the external service described below.  Parse the JSON returned which will show stats on the flight (see the flight stats div).
+
+note: data can be "meal", "airplane model", "% on time"
+
+8. We've added a new form to the confirmation box, so you can get updates if the flight gets delayed via your phone.  Do an ajax request that does a POST call to '/notify_me', sends the data from the form using serialize, and returns dataType script.
+
+Level 3
+
+1. When a seat is clicked on, before the selected class is added fadeOut(), then change the class, then fadeIn()
+
+2. Make both the fade out and fade in 'fast', and add a slow slide down to the seat confirmation.
+
+3. Use a callback so that after the seat confirmation slides down, the notify me box fades in.
+
+4. Add a delay so that after the seat confirmation slides down, the page waits 1000ms and then the notify me box fades in.
+
+5. Use a Queue so when "view earlier flight" or "view later flight" is clicked it will fadeOut the current flight, then once the AJAX call is successful it updates the html and then fadeIn().
+
+6. Can't think of a good STOP function.
+
+Level 4
+
+1. Lets revisit the selectSeat function, this time we'll be receiving json from the server (as seen below).  Use .each to iterate through the JSON array to populate unavailable and available seats.
+
+2. Refactor your code to use .map instead.
+
+3. <Need to think of a good utility function>
+
+3. The viewAlternateFlight button now uses AJAX as well (we made the changes).  Eliminate the duplication you see below by creating a plugin called loadSeats which sends in the seating-chart with the JSON from the ajax and shows seat availability. Once created refactor both functions to use this plugin.
+
+4. Refactor the code below to be encapsulated.
+
+5. Notice how we now allow the key press of < or > to see the previous or next flight.  Refactor the code below to use an event called alternateFlight.
+
+6. Modify the seating chart below to become it's own jQuery template.
