@@ -4,7 +4,7 @@ Level 2
 
 2. Add cache false, a timeout of 7000ms, and write an error callback which simply prints "Unable to pull seat price, please select another seat" to the confirmation div, and then shows the div.
 
-3. Notice the "view earlier flight" and "view later flight" buttons, and the events below.  Fill out the viewAlternateFlight method, which should do an Ajax call to 'flights' + flight, and sends in {'next': next}.  On success it should replace the seatLayout, and reset the selectedSeat variable.
+3. Notice the "view earlier flight" and "view later flight" buttons, and the events below.  Fill out the viewAlternateFlight method, which should do an Ajax call to 'flights' + flight, and sends in {'next': next}.  On success it should replace the seatLayout, and reset the selectedSeat variable. (maybe use flight id instead of next)
 
 4. Refactor 3 to use the href from the clicked element as the ajax url, and get rid of the data parameter
 
