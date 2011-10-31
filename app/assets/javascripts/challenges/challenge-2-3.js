@@ -11,7 +11,7 @@ jQuery(function($) {
         method: "get",
         data: { direction: null }, // "prev" or "next"
         success: function(result){
-          // update #seating-chart here
+          // update .seating-chart here
         }
       });
     }
@@ -32,7 +32,7 @@ jQuery(function($) {
       method: "get",
       data: { direction: rel },
       success: function(result){
-        $('#seating-chart').html(result);
+        $('.seating-chart').html(result);
       }
     });
   }
