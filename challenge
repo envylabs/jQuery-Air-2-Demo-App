@@ -6,21 +6,23 @@ Level 2
 
 3. Notice the "view earlier flight" and "view later flight" buttons, and the events below.  Fill out the viewAlternateFlight method, which should do an Ajax call to 'flights' + flight, and sends in {'next': next}.  On success it should replace the seatLayout, and reset the selectedSeat variable.
 
-4. To make "view earlier/later flights" buttons work, have them use delegate to call the viewAlternateFlight function.
+4. Refactor 3 to use the href from the clicked element as the ajax url, and get rid of the data parameter
 
-5. When someone clicks the "view later/earlier flight" button twice, add an abort.  You'll want to set the fetchingFlight variable equal to the ajax request, set the variable to null on complete, and then check when the viewAlternateFlight function is called if the ajax request is in progress (and if so, abort).
+5. To make "view earlier/later flights" buttons work, have them use delegate to call the viewAlternateFlight function.
 
-6. When a seat is selected we better make sure that it's actually still available, and reserve it for the user.  Finish the selectSeat function to use AJAX, changing the data type to json, and writing the on success method.  The AJAX will return JSON (see the sample return output below).  In the success method you'll want to set the confirmation number.
+6. When someone clicks the "view later/earlier flight" button twice, add an abort.  You'll want to set the fetchingFlight variable equal to the ajax request, set the variable to null on complete, and then check when the viewAlternateFlight function is called if the ajax request is in progress (and if so, abort).
+
+7. When a seat is selected we better make sure that it's actually still available, and reserve it for the user.  Finish the selectSeat function to use AJAX, changing the data type to json, and writing the on success method.  The AJAX will return JSON (see the sample return output below).  In the success method you'll want to set the confirmation number.
 
 { 'confirmation' : '3F4DSQ' }
 
 note: May want to show ajax call itself.. so all they have to do is parse the result. Also may want to show them the failure callback.
 
-7. Finish the method below to which will fetch statistics against the external service described below.  Parse the JSON returned which will show stats on the flight (see the flight stats div).
+8. Finish the method below to which will fetch statistics against the external service described below.  Parse the JSON returned which will show stats on the flight (see the flight stats div).
 
 note: data can be "meal", "airplane model", "% on time"
 
-8. We've added a new form to the confirmation box, so you can get updates if the flight gets delayed via your phone.  Do an ajax request that does a POST call to '/notify_me', sends the data from the form using serialize, and returns dataType script.
+9. We've added a new form to the confirmation box, so you can get updates if the flight gets delayed via your phone.  Do an ajax request that does a POST call to '/notify_me', sends the data from the form using serialize, and returns dataType script.
 
 Level 3
 
