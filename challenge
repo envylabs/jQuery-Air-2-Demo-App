@@ -8,7 +8,7 @@ Level 2
 
 4. Refactor 3 to use the href from the clicked element as the ajax url, and get rid of the data parameter
 
-5. To make "view earlier/later flights" buttons work, have them use delegate to call the viewAlternateFlight function.
+5. To make "view earlier/later flights" buttons work, have them use delegate to call the viewAlternateFlight function. (NOTE: the jQuery docs say that .delegate() has been superseded by .on() in 1.7+)
 
 6. When someone clicks the "view later/earlier flight" button twice, add an abort.  You'll want to set the fetchingFlight variable equal to the ajax request, set the variable to null on complete, and then check when the viewAlternateFlight function is called if the ajax request is in progress (and if so, abort).
 
