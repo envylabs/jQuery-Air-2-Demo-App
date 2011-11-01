@@ -30,6 +30,8 @@ Level 3
 
 2. Make both the fade out and fade in 'fast', and add a slow slide down to the seat confirmation.
 
+2a. Add a slow slide down to the seat confirmation.
+
 3. Use a callback so that after the seat confirmation slides down, the notify me box fades in.
 
 4. Add a delay so that after the seat confirmation slides down, the page waits 1000ms and then the notify me box fades in.
