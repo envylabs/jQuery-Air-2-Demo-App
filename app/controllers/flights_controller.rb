@@ -46,6 +46,10 @@ class FlightsController < ApplicationController
     
     
   end
+
+  def reserve
+    render :json => {:confirmation => '3F4DSQ'}
+  end
   
   def show_jsonp
     @flight = Flight.find_by_flight(params[:id])

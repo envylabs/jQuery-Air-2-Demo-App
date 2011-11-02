@@ -6,6 +6,8 @@ Jquery2::Application.routes.draw do
   match '/login', :to => 'flights#login'
   
   resources :flights do
+    post :reserve, :on => :member
+
     collection do
       post :fail
     end
