@@ -52,7 +52,9 @@ jQuery(function($) {
         setSeat(e.target);
         $('#confirm-seat').show();
         $('#confirm-first-class').hide();
-        $(this).data('confirmation', result.confirmation);
+
+        $('#reservations').show();
+        $('#confirmation-number').text(result.confirmation);
       }
     });
   }

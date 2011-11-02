@@ -48,7 +48,9 @@ class FlightsController < ApplicationController
   end
 
   def reserve
-    render :json => {:confirmation => '3F4DSQ'}
+    # Returns a random 6-digit confirmation code
+    confirmation = ActiveSupport::SecureRandom.hex(3).upcase
+    render :json => {:confirmation => confirmation}
   end
   
   def show_jsonp
