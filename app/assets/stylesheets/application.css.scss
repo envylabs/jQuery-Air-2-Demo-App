@@ -509,6 +509,13 @@ h4 {
           margin-right: 38px;
         }
       }
+      .tooltip {
+        display: block;
+        background: #CCC;
+        border: 1px solid #666;
+        color: #FFF;
+        display: none;
+      }
       a {
         @include border-radius(3px);
         background: #ded0bd;

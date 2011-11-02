@@ -3,7 +3,7 @@ jQuery(function($) {
   
   /* Starts with
     function showConfirm(result){
-      $('#confirm-first-class').html(result).show('slideDown', function(){
+      $('#confirm-first-class').html(result).slideDown(function(){
         $('#notify-me').fadeIn();
       })
     }
@@ -66,7 +66,7 @@ jQuery(function($) {
   }
   /* answer */
   function showConfirm(result){
-    $('#confirm-first-class').html(result).show('slideDown', function(){
+    $('#confirm-first-class').html(result).slideDown(function(){
       $('#notify-me').delay(1000).fadeIn();
     })
   }
