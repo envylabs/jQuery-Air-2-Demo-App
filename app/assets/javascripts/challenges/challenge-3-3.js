@@ -1,5 +1,5 @@
 jQuery(function($) {
-  question("Add a slideDown when showing the seat confirmation.");
+  question("Instead of just showing #confirm-first-class, use the slideDown effect.");
   
   /* Starts with
     function showConfirm(result){
@@ -64,7 +64,7 @@ jQuery(function($) {
   }
   /* answer */
   function showConfirm(result){
-    $('#confirm-first-class').html(result).show('slideDown')
+    $('#confirm-first-class').html(result).slideDown()
   }
   
 

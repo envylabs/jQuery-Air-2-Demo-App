@@ -1,9 +1,9 @@
 jQuery(function($) {
-  question("Add a callback to show() so that after the seat confirmation slides down, the notify me box fades in");
+  question("Add a callback to slideDown() so that after the seat confirmation slides down, the notify me box fades in");
   
   /* Starts with
     function showConfirm(result){
-      $('#confirm-first-class').html(result).show('slideDown')
+      $('#confirm-first-class').html(result).slideDown()
     }
   */
   
@@ -64,9 +64,9 @@ jQuery(function($) {
   }
   /* answer */
   function showConfirm(result){
-    $('#confirm-first-class').html(result).show('slideDown', function(){
+    $('#confirm-first-class').html(result).slideDown(function(){
       $('#notify-me').fadeIn();
-    })
+    });
   }
   
 
