@@ -9,5 +9,5 @@
 //= require jquery.tmpl
 
 function question(q) {
-  $("#question p").html(q);
+  $("#question").html(q);
 }
