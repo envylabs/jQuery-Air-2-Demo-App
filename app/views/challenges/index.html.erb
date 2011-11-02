@@ -11,7 +11,7 @@
     <ol class="first-class">
       <li class="row">
         <ol>
-          <li><a class="available" data-seat="1a" href="#">A</a></li>
+          <li><a class="available" data-features="tv,power" data-seat="1a" href="#">A</a></li>
           <li><a data-seat="1b" data-seat="1b" href="#">B</a></li>
           <li><a data-seat="1c" data-seat="1c" href="#">C</a></li>
           <li><a data-seat="1d" data-seat="1d" href="#">D</a></li>
@@ -19,9 +19,9 @@
       </li>
       <li class="row">
         <ol>
-          <li><a class="available" data-seat="2a" href="#">A</a></li>
-          <li><a class="available" data-seat="2b" href="#">B</a></li>
-          <li><a class="available" data-seat="2c" href="#">C</a></li>
+          <li><a class="available" data-features="power" data-seat="2a" href="#">A</a></li>
+          <li><a class="available" data-features="tv" data-seat="2b" href="#">B</a></li>
+          <li><a class="available" data-features="power" data-seat="2c" href="#">C</a></li>
           <li><a data-seat="2d" data-seat="2d" href="#">D</a></li>
         </ol>
       </li>
@@ -34,9 +34,9 @@
           <li><a class="available" data-seat="3a" href="#">A</a></li>
           <li><a data-seat="3b" href="#">B</a></li>
           <li><a data-seat="3c" href="#">C</a></li>
-          <li><a class="available" data-seat="3d" href="#">D</a></li>
-          <li><a class="available" data-seat="3e" href="#">E</a></li>
-          <li><a class="available" data-seat="3f" href="#">F</a></li>
+          <li><a class="available" data-seat="3d" data-features="power" href="#">D</a></li>
+          <li><a class="available" data-seat="3e" data-features="tv" href="#">E</a></li>
+          <li><a class="available" data-seat="3f" data-features="power" href="#">F</a></li>
         </ol>
       </li>
       <li class="row">
@@ -96,6 +96,14 @@
     <ul>
       <li><a href="/flights/815?direction=prev" rel="prev">View Earlier Flight</a></li>
       <li><a href="/flights/815?direction=next" rel="next">View Later Flight</a></li>
+    </ul>
+  </div>
+  
+  <div id="highlights">
+    <h3>Highlight Seats</h3>
+    <ul>
+      <li><input type="checkbox" value="filter_power" name="power">Power Port</input></li>
+      <li><input type="checkbox" value="filter_tv" name="tv">Overhead TV</input></li>
     </ul>
   </div>
   

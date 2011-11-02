@@ -537,6 +537,14 @@ h4 {
           cursor: pointer;
           text-shadow: 0 1px 2px rgba(0,0,0,0.3);
         }
+        &.filter_power {
+          background: #F69;
+        }
+        
+        &.filter_tv {
+          background: #990;
+        }
+        
         &.selected {
           @include box-shadow(0 1px 3px #8cf5f5);
           background: #8cf5f5;

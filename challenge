@@ -42,7 +42,7 @@ Level 3
 
 Level 4
 
-1. Lets revisit the selectSeat function, this time we'll be receiving json from the server (as seen below).  Use .each to iterate through the JSON array to populate unavailable and available seats.
+1. Lets revisit the "view later flight" function, this time we'll be receiving json from the server (as seen below).  Use .each to iterate through the JSON array to populate unavailable and available seats.
 
 2. Refactor your code to use .map instead.
 
