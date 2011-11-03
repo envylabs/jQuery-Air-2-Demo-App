@@ -3,23 +3,19 @@ jQuery(function($) {
 
   /* Starts with
 
-  function selectSeat(e) {
-    e.preventDefault();
+  function selectSeat(event) {
+    event.preventDefault();
 
     var flight_id = 815;
+    var seat = $(this).data('seat');
 
-    $('#confirm-seat').show();
-    $('#confirm-first-class').hide();
-
-    $.ajax('/flights/815/reserve', {
+    $.ajax('/flights/' + flight_id + '/reserve', {
       type: 'post',
       dataType: 'json',
       data: { seat: seat },
       success: function(result) {
-        setSeat(e.target);
-        $('#confirm-seat').show();
-        $('#confirm-first-class').hide();
-        $(this).data('confirmation', result.confirmation);
+        // example result: {'confirmation': '3DF9Q4'}
+        // show #reservations and update #confirmation-number
       }
     });
   }
@@ -50,9 +46,6 @@ jQuery(function($) {
       data: { seat: seat },
       success: function(result) {
         setSeat(e.target);
-        $('#confirm-seat').show();
-        $('#confirm-first-class').hide();
-
         $('#reservations').show();
         $('#confirmation-number').text(result.confirmation);
       }
