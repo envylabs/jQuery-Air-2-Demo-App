@@ -19,6 +19,14 @@ class FlightsController < ApplicationController
   def fail
     head :unprocessable_entity
   end
+
+  def stats
+    meal = (rand(2) == 1) ? 'yes' : 'no'
+    model = '747'
+    percentage = 85 + rand(15) # random from 85% - 99%
+
+    render :json => {:meal => meal, :model => model, :percentage_on_time => percentage}
+  end
   
   def show
 
