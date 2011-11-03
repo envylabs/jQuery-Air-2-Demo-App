@@ -18,6 +18,8 @@ Jquery2::Application.routes.draw do
   
   match '/flights_jsonp/:id', :to => 'flights#show_jsonp'
 
+  match '/notify_me', :to => 'notifications#create'
+
   resources :reservations do
     collection do
       post :fail

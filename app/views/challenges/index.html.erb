@@ -110,10 +110,14 @@
   <aside>
     <div id='confirm-first-class' style="display:none; width:300px">
     </div>
-    <form id="notify-me" action="/notify_me" style="display:none">
-      <label for="phone">Insert your Phone Number</label>
-      <input type="text" name="phone" id="phone"></input>
-    </form>
+
+    <div id="notify-me">
+      <form action="/notify_me">
+        <label for="phone">Insert your Phone Number</label>
+        <input type="text" name="phone" id="phone"></input>
+      </form>
+    </div>
+
     <div id='confirm-seat' style="display:none">
       <h2>About This Seat</h2>
       <table>
