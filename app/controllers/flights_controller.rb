@@ -28,6 +28,123 @@ class FlightsController < ApplicationController
     render :json => {:meal => meal, :model => model, :percentage_on_time => percentage}
   end
   
+  def seats
+    render json: {
+      firstClass: [
+        [
+          {
+            seat: 'A',
+            available: true,
+            features: 'power'
+          },
+          {
+            seat: 'B',
+            available: false,
+            features: 'tv'
+          },
+          {
+            seat: 'C',
+            available: true,
+            features: 'power'
+          },
+          {
+            seat: 'D',
+            available: false,
+            features: 'tv'
+          }
+        ],
+        [
+          {
+            seat: 'A',
+            available: false,
+            features: 'tv'
+          },
+          {
+            seat: 'B',
+            available: false,
+            features: 'tv'
+          },
+          {
+            seat: 'C',
+            available: false,
+            features: 'power'
+          },
+          {
+            seat: 'D',
+            available: true,
+            features: ''
+          }
+        ]
+      ],
+      economyClass: [
+        [
+          {
+            seat: 'A',
+            available: false,
+            features: 'power'
+          },
+          {
+            seat: 'B',
+            available: false,
+            features: 'tv'
+          },
+          {
+            seat: 'C',
+            available: false,
+            features: 'power'
+          },
+          {
+            seat: 'D',
+            available: false,
+            features: 'tv'
+          },
+          {
+            seat: 'E',
+            available: true,
+            features: 'power,tv'
+          },
+          {
+            seat: 'F',
+            available: false,
+            features: ''
+          }
+        ],
+        [
+          {
+            seat: 'A',
+            available: true,
+            features: 'tv'
+          },
+          {
+            seat: 'B',
+            available: true,
+            features: 'tv'
+          },
+          {
+            seat: 'C',
+            available: false,
+            features: 'power'
+          },
+          {
+            seat: 'D',
+            available: true,
+            features: 'power,tv'
+          },
+          {
+            seat: 'E',
+            available: false,
+            features: ''
+          },
+          {
+            seat: 'F',
+            available: true,
+            features: ''
+          }
+        ]
+      ]
+    }
+  end
+  
   def show
 
     # @flight = Flight.find_by_flight(params[:id])

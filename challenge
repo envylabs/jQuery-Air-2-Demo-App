@@ -48,10 +48,12 @@ Level 4
 
 3. <Need to think of a good utility function>
 
-3. The viewAlternateFlight button now uses AJAX as well (we made the changes).  Eliminate the duplication you see below by creating a plugin called loadSeats which sends in the seating-chart with the JSON from the ajax and shows seat availability. Once created refactor both functions to use this plugin.
+4. The viewAlternateFlight button now uses AJAX as well (we made the changes).  Eliminate the duplication you see below by creating a plugin called loadSeats which sends in the seating-chart with the JSON from the ajax and shows seat availability. Once created refactor both functions to use this plugin.
 
-4. Refactor the code below to be encapsulated.
+4a.  Use defaults in the plugin
 
-5. Notice how we now allow the key press of < or > to see the previous or next flight.  Refactor the code below to use an event called alternateFlight.
+5. Refactor the code below to be encapsulated.
 
-6. Modify the seating chart below to become it's own jQuery template.
+6. Notice how we now allow the key press of < or > to see the previous or next flight.  Refactor the code below to use an event called alternateFlight.
+
+7. Modify the seating chart below to become it's own jQuery template.

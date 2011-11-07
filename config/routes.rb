@@ -13,6 +13,7 @@ Jquery2::Application.routes.draw do
 
     collection do
       post :fail
+      get :seats
     end
   end
   
