@@ -8,7 +8,6 @@ jQuery(function($) {
   $('#flight-navigation a').click(function(e) {
     e.preventDefault();
     $(this).toggleClass('on');
-    $('.seating-chart').
   });
   
   $(document).keydown(function(e){
