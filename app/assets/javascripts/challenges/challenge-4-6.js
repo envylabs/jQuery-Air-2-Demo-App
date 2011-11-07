@@ -6,19 +6,19 @@ jQuery(function($) {
   // ===============
   
   /* 
+    function viewAlternateFlight(){
+      // ...
+    }
+  
+    function buildCabin(){
+      // ...
+    }
+  
+    function buildSeats(){
+      // ...
+    }
+
     $('#flight-navigation a').click(viewAlternateFlight);
-  
-    function viewAlternateFlight(e){
-      // ...
-    }
-  
-    function buildCabin(rows){
-      // ...
-    }
-  
-    function buildSeats(row_number, seats){
-      // ...
-    }
   */
 
   // =============
@@ -33,17 +33,23 @@ jQuery(function($) {
   // ==========
   // = answer =
   // ==========
-  var seatSelector = {
-    init: function(){
-      $('#flight-navigation a').click(this.viewAlternateFlight);
-    },
-    viewAlternateFlight: function(){
-    },
-    buildCabin: function(){
-    },
-    buildSeats: function(){
-    }
-  }
 
-  
+  var seatSelector = {
+    viewAlternateFlight: function() {
+      // ...
+    },
+
+    buildCabin: function() {
+      // ...
+    },
+
+    buildSeats: function() {
+      // ...
+    },
+
+    init: function() {
+      $('#flight-navigation a').click(this.viewAlternateFlight);
+    }
+  };
+
 });
