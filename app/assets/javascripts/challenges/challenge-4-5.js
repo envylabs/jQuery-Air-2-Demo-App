@@ -1,5 +1,5 @@
 jQuery(function($) {
-  question("Convert highlightSeats into a jQuery plugin and use it in the change callback");
+  question("Update the highlightSeats plugin to have defaults for the options.  The default values should be initialOpacity of 0.5, and targetOpacity of 1.0");
   
   // ===============
   // = initial code =
@@ -22,18 +22,18 @@ jQuery(function($) {
         }
       });
     }
-
-    $('#highlights input').change(function(e){
-      $(this).highlightSeats('.seating-chart a.available', {
-        initialOpacity: 0.3,
-        targetOpacity: 0.9
-      });
-    });
   */
 
   // =============
   // = resources =
   // =============
+  
+  $('#highlights input').change(function(e){
+    $(this).highlightSeats('.seating-chart a.available', {
+      initialOpacity: 0.3,
+      targetOpacity: 0.9
+    });
+  });
   
   // ==========
   // = answer =
@@ -63,12 +63,5 @@ jQuery(function($) {
       }
     });
   }
-  
-  $('#highlights input').change(function(e){
-    $(this).highlightSeats('.seating-chart a.available', {
-      initialOpacity: 0.3,
-      targetOpacity: 0.9
-    });
-  });
   
 });
