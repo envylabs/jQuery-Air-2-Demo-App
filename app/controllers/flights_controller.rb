@@ -35,44 +35,52 @@ class FlightsController < ApplicationController
           {
             seat: 'A',
             available: true,
-            features: 'power'
+            features: 'power',
+            row_number: 1
           },
           {
             seat: 'B',
             available: false,
-            features: 'tv'
+            features: 'tv',
+            row_number: 1
           },
           {
             seat: 'C',
             available: true,
-            features: 'power'
+            features: 'power',
+            row_number: 1
           },
           {
             seat: 'D',
             available: false,
-            features: 'tv'
+            features: 'tv',
+            row_number: 1
           }
         ],
         [
           {
             seat: 'A',
             available: false,
-            features: 'tv'
+            features: 'tv',
+            row_number: 2
           },
           {
             seat: 'B',
             available: false,
-            features: 'tv'
+            features: 'tv',
+            row_number: 2
           },
           {
             seat: 'C',
             available: false,
-            features: 'power'
+            features: 'power',
+            row_number: 2
           },
           {
             seat: 'D',
             available: true,
-            features: ''
+            features: '',
+            row_number: 2
           }
         ]
       ],
@@ -81,64 +89,76 @@ class FlightsController < ApplicationController
           {
             seat: 'A',
             available: false,
-            features: 'power'
+            features: 'power',
+            row_number: 3
           },
           {
             seat: 'B',
             available: false,
-            features: 'tv'
+            features: 'tv',
+            row_number: 3
           },
           {
             seat: 'C',
             available: false,
-            features: 'power'
+            features: 'power',
+            row_number: 3
           },
           {
             seat: 'D',
             available: false,
-            features: 'tv'
+            features: 'tv',
+            row_number: 3
           },
           {
             seat: 'E',
             available: true,
-            features: 'power,tv'
+            features: 'power,tv',
+            row_number: 3
           },
           {
             seat: 'F',
             available: false,
-            features: ''
+            features: '',
+            row_number: 3
           }
         ],
         [
           {
             seat: 'A',
             available: true,
-            features: 'tv'
+            features: 'tv',
+            row_number: 4
           },
           {
             seat: 'B',
             available: true,
-            features: 'tv'
+            features: 'tv',
+            row_number: 4
           },
           {
             seat: 'C',
             available: false,
-            features: 'power'
+            features: 'power',
+            row_number: 4
           },
           {
             seat: 'D',
             available: true,
-            features: 'power,tv'
+            features: 'power,tv',
+            row_number: 4
           },
           {
             seat: 'E',
             available: false,
-            features: ''
+            features: '',
+            row_number: 4
           },
           {
             seat: 'F',
             available: true,
-            features: ''
+            features: '',
+            row_number: 4
           }
         ]
       ]

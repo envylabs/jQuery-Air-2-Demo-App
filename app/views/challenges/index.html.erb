@@ -157,3 +157,10 @@
     </div>
   </aside>
 </section>
+
+<script id="seatTemplate" type="x-jquery-tmpl">
+  <li>
+    <a class="${available ? 'available' : ''}" data-features="${features}" data-seat="${row_number + seat}">${seat}</a>
+  </li>  
+</script>
+
