@@ -1,83 +1,12 @@
-Level 2
+jQuery Air 2 Demo App
+###############
 
-.ajax
+This application has most of the demo code that made it into the slides and the challenges.  However, some of it was tweaked once the course was made.
 
-1. Get data --  call.. show what we did in Level 1.  returns HTML.
+To Run
+######
 
-Teaching: .ajaxCallbacks success, cache: false
+You'll need to have Ruby 1.9.2+ installed, and run bundle, then 'rake db:setup', then try to startup the server.
 
-See http://net.tutsplus.com/tutorials/javascript-ajax/5-ways-to-make-ajax-calls-with-jquery/
-
-show .get?
-
-2. Server returns an error.  A problem will happen, and we'll need to debug, and then add the code so it will show  "Unable to load flights, click here to try again"
-
-Teaching: error callback, and debug on chrome.
-
-3. Refactoring.. to introduce a "loading" div
-
-Teaching: before and complete callbacks
-
-(add 2 second delay to controller)
-before ajax callback to hide current flights, and show loading div
-complete callback to hide loading div and show current flights
-
-4. Show how it works, except if we click on multiple tabs at once.  
-
-Teaching: Ajax can set to a variable, and aborted.  However this calls error, so we'll need to catch that.
-
-5. Define a timeout for the ajax call.
-
-Teaches: Timeout
-
-6. Selecting a flight, sending that flight data over, and show total box with jQuery Air Login/Pass. 
-
-Teaching: How to send complex data using JSON, and receiving back JSON to populate hidden div. Cover the "dataType" parameter.  Type of data we're expecting back from server.  
-
-Also show same query using $.getJSON
-call would return { 'price': 144.00, 'tax': 24.00 }, internally we'd call showTotal({})
-
-7. Change call to use JSONP..  send with it, a callback method.
-
-Teaching: JSON P
-showTotal({});
-
-Also show with $.getScript
-
-8. Do a POST request for Login/Pass.  Show how to do a script request, and use type: post
-
-Teaches: script, and type. POST.
-
-Also, show refactor into using the jQuery.post method.
-
-
-// Something we can add... color animation.. make total price darker.  
------
-
-Level 3
-
-Chaining, Timing, Intervals, Effect Queues, Starting/Stoping animation, custom easing methods
-
-1. Slide up the login form and slide it down upon completion of the slideup.
-
-2. Use Callback function upon successful slidedown to change background color of triptotal.
-Also changing the callback to be format HTML rather than script.
-
-3. Animate color change to highlight price change upon successful login. Also speed this up to make it faster.
-
-4. Change easing method on the slideUp/slideDown of the login box.
-
-5. Use queue to slideup the login box, then slide it down upon success after it's complete.
-
-6. Now that the tooltip is fast, lets add a very slight delay, so the user has to hover for a second over the tab before it appears.
-
-7. After the total box Fade's In, queue up an event to highlight the login box.
-* Thinking we might be able to just remove this one.
-
-8. Use the stop function to stop the tooltip animation on the mouseleave. 
-* This one is not doing. Right now mouseleave removes the element altogether, so we'll need to come up with another case for 
-
-------
-
-Level 4
+You can view the code samples in the /app/assets/javascripts/slides & /challenges directories and you can get access to them from the rails server by going to http://localhost:3000/slides?l=<level>&c=<challenge> or http://localhost:3000/challenges?l=<level>&c=<challenge>
 
